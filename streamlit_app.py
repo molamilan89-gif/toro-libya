@@ -1,15 +1,16 @@
 import streamlit as st
 
-# إعدادات الصفحة الأساسية
+# إعدادات الصفحة الأساسية لتظهر بشكل احترافي
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# دمج كود الـ HTML و CSS و JavaScript الذي أرسلته بالكامل
+# الكود الكامل (HTML + CSS + JavaScript) مدمج في بايثون
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toro Libya - منصة وول ستريت ليبيا</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -25,7 +26,7 @@ full_code = """
 <body>
     <div class="w-full fixed top-0 left-0 bg-cyan-950/90 py-2 z-[100] border-b border-cyan-500/30">
         <div class="animate-marquee text-cyan-400 text-xs font-bold">
-            📢 عاجل: Toro Libya يطلق التحديث الشامل لأسعار الذهب والعملات .. 🛢️ خام برنت مستقر عند 78.40$ .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا ..
+            📢 عاجل: Toro Libya يطلق التحديث الشامل لأسعار الذهب والعملات .. 🛢️ خام برنت مستقر عند 78.40$ .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 منصة تورو ليبيا: المؤشر الاقتصادي الأول في البلاد ..
         </div>
     </div>
 
@@ -98,5 +99,5 @@ full_code = """
 </html>
 """
 
-# عرض الكود داخل تطبيق Streamlit
-st.components.v1.html(full_code, height=1500, scrolling=True)
+# تشغيل الكود في Streamlit
+st.components.v1.html(full_code, height=1800, scrolling=True)
