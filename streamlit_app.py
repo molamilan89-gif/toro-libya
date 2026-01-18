@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل مع معالجة خطأ الحاسبة وتثبيت الأقسام
+# الكود الكامل والشامل (محفوظ بالكامل)
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -30,5 +30,119 @@ full_code = """
 
         .main-container { padding: 80px 20px 350px 20px; display: flex; flex-direction: column; items: center; }
         
-        /* تنسيق الحاسبة المصلح */
-        .calc-box { background: #111827; border: 1px solid #3741
+        /* تنسيق الحاسبة المطور بـ رموز العملات */
+        .calc-box { background: #111827; border: 1px solid #374151; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; margin-bottom: 10px; transition: 0.3s; }
+        .calc-box:focus-within { border-color: #22d3ee; box-shadow: 0 0 10px rgba(34, 211, 238, 0.2); }
+        .calc-box input { background: transparent !important; border: none !important; padding: 12px 5px !important; width: 100% !important; color: white !important; font-family: sans-serif !important; direction: ltr !important; text-align: center !important; outline: none !important; font-weight: bold; font-size: 1.1rem; }
+        .symbol { color: #22d3ee; font-weight: bold; font-size: 1.1rem; font-family: sans-serif; min-width: 35px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="marquee-wrapper">
+        <div class="animate-marquee">
+            📢 عاجل: Toro Libya يطلق التحديث الشامل لأسعار الذهب والعملات .. 🛢️ خام برنت مستقر عند 78.40$ .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 منصة تورو ليبيا: المؤشر الاقتصادي الأول في البلاد ..
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="live-indicator"><span class="dot"></span> مباشر - تحديث تلقائي</div>
+
+        <div class="text-center mb-8">
+            <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
+            <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
+        </div>
+
+        <div class="w-full max-w-md">
+            <div class="glass p-5">
+                <h2 class="section-title">💵 العملات والذهب</h2>
+                <div class="price-item"><span>🇺🇸 دولار موازي</span><span class="font-bold text-cyan-400">8.65</span></div>
+                <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="font-bold">9.12</span></div>
+                <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="font-bold">10.85</span></div>
+                <div class="price-item"><span>✨ ذهب كسر (18)</span><span class="font-bold text-yellow-500">415.5</span></div>
+                <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="font-bold text-yellow-600">485.0</span></div>
+            </div>
+
+            <div class="glass p-5">
+                <h2 class="section-title">🪙 العملات الرقمية</h2>
+                <div class="price-item"><span>₿ Bitcoin</span><span class="text-green-400 font-bold">$96,430</span></div>
+                <div class="price-item"><span>💠 Solana (SOL)</span><span class="text-green-400 font-bold">$195.20</span></div>
+            </div>
+
+            <div class="glass p-5">
+                <h2 class="section-title">⛽ الطاقة والنفط</h2>
+                <div class="price-item"><span>🛢️ خام برنت</span><span class="font-bold text-green-400">$78.40</span></div>
+                <div class="price-item"><span>🔥 غاز الطهي</span><span class="font-bold">5.00 LYD</span></div>
+            </div>
+
+            <div class="glass p-5">
+                <h2 class="section-title">🏗️ مواد البناء</h2>
+                <div class="price-item"><span>🧱 إسمنت (قنطار)</span><span class="font-bold">45.00</span></div>
+                <div class="price-item"><span>⛓️ حديد (الطن)</span><span class="font-bold">4100</span></div>
+            </div>
+
+            <div class="glass p-5">
+                <h2 class="section-title">🛒 السلع الأساسية</h2>
+                <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
+                <div class="price-item"><span>🍚 أرز (كيلو)</span><span class="font-bold">5.00</span></div>
+            </div>
+        </div>
+
+        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-1/2">
+            <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
+            
+            <div class="calc-box">
+                <input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="0.00">
+                <span class="symbol">LYD</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="calc-box">
+                    <span class="symbol">$</span>
+                    <input type="text" id="usd" oninput="runCalc('usd')" placeholder="0.00">
+                </div>
+                <div class="calc-box">
+                    <span class="symbol">€</span>
+                    <input type="text" id="eur" oninput="runCalc('eur')" placeholder="0.00">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rateUsd = 8.65, rateEur = 9.12;
+
+        function toEn(s) {
+            return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, '');
+        }
+
+        function runCalc(id) {
+            const el = document.getElementById(id);
+            el.value = toEn(el.value);
+            let val = parseFloat(el.value) || 0;
+            
+            const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
+
+            if(id === 'lyd'){
+                u.value = val > 0 ? (val / rateUsd).toFixed(2) : "";
+                e.value = val > 0 ? (val / rateEur).toFixed(2) : "";
+            } else if(id === 'usd'){
+                l.value = val > 0 ? (val * rateUsd).toFixed(2) : "";
+                e.value = val > 0 ? ((val * rateUsd) / rateEur).toFixed(2) : "";
+            } else if(id === 'eur'){
+                l.value = val > 0 ? (val * rateEur).toFixed(2) : "";
+                u.value = val > 0 ? ((val * rateEur) / rateUsd).toFixed(2) : "";
+            }
+
+            if(val === 0) {
+                if(id==='lyd'){ u.value = e.value = ""; }
+                if(id==='usd'){ l.value = e.value = ""; }
+                if(id==='eur'){ l.value = u.value = ""; }
+            }
+        }
+    </script>
+</body>
+</html>
+"""
+
+# عرض المشروع
+st.components.v1.html(full_code, height=2000, scrolling=True)
