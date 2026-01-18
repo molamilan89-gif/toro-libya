@@ -1,9 +1,9 @@
 import streamlit as st
 
 # إعدادات الصفحة الاحترافية - TORO LIBYA
-st.set_page_config(page_title="Toro Libya - النسخة الشاملة", page_icon="🐂", layout="centered")
+st.set_page_config(page_title="Toro Libya - النسخة الرسمية", page_icon="🐂", layout="centered")
 
-# الكود الكامل: إرجاع العملات الرقمية وضمان وجود كل الأقسام
+# الكود الكامل مع الشعار والأقسام الشاملة
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -19,78 +19,92 @@ full_code = """
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
         .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
+        /* شريط الأخبار المتحرك */
         .marquee-wrapper { width: 100%; position: fixed; top: 0; left: 0; background: rgba(8, 51, 68, 0.95); border-bottom: 1px solid #22d3ee; z-index: 9999; padding: 8px 0; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 13px; font-weight: bold; color: #22d3ee; }
         
-        .live-indicator { display: inline-flex; align-items: center; gap: 5px; color: #4ade80; font-size: 10px; font-weight: bold; margin-bottom: 10px; }
+        .main-container { padding: 100px 20px 50px 20px; display: flex; flex-direction: column; items: center; }
+        
+        /* تصميم الشعار الجديد */
+        .logo-container { text-align: center; margin-bottom: 30px; position: relative; }
+        .logo-img { width: 150px; height: 150px; border-radius: 20px; box-shadow: 0 0 30px rgba(34, 211, 238, 0.3); border: 2px solid rgba(34, 211, 238, 0.5); margin: 0 auto; }
+        .logo-text { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; margin-top: 10px; text-transform: uppercase; }
+
+        .live-indicator { display: inline-flex; align-items: center; gap: 5px; color: #4ade80; font-size: 10px; font-weight: bold; margin-bottom: 15px; }
         .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
-
-        .main-container { padding: 80px 20px 50px 20px; display: flex; flex-direction: column; items: center; }
-        .updated { animation: flash-green 1.5s; }
-        @keyframes flash-green { 0% { background: rgba(74, 222, 128, 0.2); } 100% { background: transparent; } }
     </style>
 </head>
 <body>
     <div class="marquee-wrapper">
         <div class="animate-marquee">
-            📢 Toro Libya: تحديثات فورية من غرف الواتساب الموثوقة .. ₿ بيتكوين يتجاوز 96 ألف دولار .. 💍 الذهب يحافظ على مستوياته في السوق الليبي .. 🏗️ أسعار البناء اليوم ..
+            📢 Toro Libya: الهوية الرسمية الجديدة انطلقت .. تحديثات فورية من قلب سوق المشير .. ₿ البيتكوين والذهب والعملات في مكان واحد .. 🐂
         </div>
     </div>
 
     <div class="main-container">
-        <div class="live-indicator"><span class="dot"></span> اتصال مباشر بسوق المشير والبورصات</div>
-
-        <div class="text-center mb-6">
-            <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
-            <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
+        <div class="logo-container">
+            <div class="live-indicator"><span class="dot"></span> نظام Toro Ly المباشر</div>
+            <img src="https://lh3.googleusercontent.com/d/1Bf2hD0G-X_f1I6xJ4n-L4z8L9Y-tG9z-" class="logo-img" alt="Toro Ly Logo">
+            <h1 class="logo-text">TORO <span class="text-cyan-400">LY</span></h1>
+            <p class="text-gray-500 text-[10px] tracking-[0.3em] uppercase">The Legend of Libyan Market</p>
         </div>
 
         <div class="w-full max-w-md">
             <div class="glass p-5 border-l-4 border-cyan-500">
                 <h2 class="section-title">🌟 نبض السوق والتوصيات</h2>
-                <p class="text-[11px] text-green-400 italic">✅ النظام يراقب غرف الواتساب الآن لتحديث الأسعار...</p>
-                <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3">💬 تواصل مع الإدارة</a>
-            </div>
-
-            <div class="glass p-5 mt-6">
-                <h2 class="section-title">📊 تحليل السوق المباشر</h2>
-                <canvas id="liveChart" width="400" height="220"></canvas>
+                <p class="text-[11px] text-green-400 italic">✅ الشعار الجديد يعكس قوة البيانات التي نقدمها لك من غرف الواتساب الموثوقة.</p>
+                <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3">💬 استشارة مباشرة</a>
             </div>
 
             <div class="glass p-5 mt-6">
                 <h2 class="section-title">💵 العملات العالمية</h2>
-                <div id="row-usd" class="price-item"><span>🇺🇸 دولار موازي</span><span id="price-usd" class="font-bold text-cyan-400">8.65</span></div>
+                <div class="price-item"><span>🇺🇸 دولار موازي</span><span id="price-usd" class="font-bold text-cyan-400">8.65</span></div>
                 <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="font-bold">9.12</span></div>
                 <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="font-bold">10.85</span></div>
                 <div class="price-item"><span>🇹🇳 دينار تونسي</span><span class="font-bold">2.65</span></div>
-                <div class="price-item"><span>🇪🇬 جنيه مصري</span><span class="font-bold text-green-400">0.17</span></div>
             </div>
 
             <div class="glass p-5">
                 <h2 class="section-title">✨ الذهب والمعادن</h2>
                 <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="font-bold text-yellow-500">485.0</span></div>
-                <div class="price-item"><span>🛠️ ذهب مستعمل (18)</span><span class="font-bold text-yellow-600">425.0</span></div>
                 <div class="price-item"><span>✨ ذهب كسر (18)</span><span class="font-bold text-yellow-400">415.5</span></div>
                 <div class="price-item"><span>🥈 فضة (جرام)</span><span class="font-bold text-gray-300">5.40</span></div>
-                <div class="price-item"><span>🥉 نحاس (كيلو)</span><span class="font-bold text-orange-500">42.0</span></div>
             </div>
 
             <div class="glass p-5">
                 <h2 class="section-title">🪙 العملات الرقمية</h2>
-                <div class="price-item"><span>₿ Bitcoin (BTC)</span><span id="btc-price" class="text-green-400 font-bold">$96,430</span></div>
+                <div class="price-item"><span>₿ Bitcoin (BTC)</span><span class="text-green-400 font-bold">$96,430</span></div>
                 <div class="price-item"><span>Ξ Ethereum (ETH)</span><span class="text-blue-400 font-bold">$3,345</span></div>
                 <div class="price-item"><span>💠 Solana (SOL)</span><span class="text-purple-400 font-bold">$195.20</span></div>
             </div>
 
             <div class="glass p-5">
-                <h2 class="section-title">⛽ الطاقة والنفط</h2>
-                <div class="price-item"><span>🛢️ خام برنت</span><span class="font-bold text-green-400">$78.40</span></div>
-                <div class="price-item"><span>🔥 غاز الطهي</span><span class="font-bold">5.00 LYD</span></div>
-            </div>
-
-            <div class="glass p-5">
                 <h2 class="section-title">🏗️ مواد البناء والسلع</h2>
                 <div class="price-item"><span>🧱 إسمنت (قنطار)</span><span class="font-bold">45.00</span></div>
-                <div class="price-item"><span>⛓️ حديد (الطن)
+                <div class="price-item"><span>⛓️ حديد (الطن)</span><span class="font-bold">4100</span></div>
+                <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
+            </div>
+
+            <div class="glass border-2 border-cyan-500/30 p-6">
+                <h3 class="text-center text-cyan-400 text-xs font-bold mb-4">🔄 محول العملات اللحظي</h3>
+                <input type="text" id="lyd" class="w-full bg-slate-900 p-3 rounded-lg text-center font-bold text-xl outline-none" placeholder="0.00 LYD">
+            </div>
+        </div>
+        
+        <p class="text-center text-gray-600 text-[10px] mt-10">Toro Ly Legend © 2026</p>
+    </div>
+
+    <script>
+        // نظام التحديث التلقائي يحاكي البوت
+        setInterval(() => {
+            let fakePrice = (8.60 + Math.random() * 0.1).toFixed(2);
+            document.getElementById('price-usd').innerText = fakePrice;
+        }, 10000);
+    </script>
+</body>
+</html>
+"""
+
+st.components.v1.html(full_code, height=3500, scrolling=True)
