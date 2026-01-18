@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الاحترافية - TORO LIBYA
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الشامل لجميع الأقسام بدون استثناء
+# الكود الشامل لجميع الأقسام (العملات، الذهب، الفضة، النحاس، مواد البناء، الرقمية + سولانا، الطاقة، الحاسبة)
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -41,7 +41,7 @@ full_code = """
 <body>
     <div class="marquee-wrapper">
         <div class="animate-marquee">
-             📢 تورو ليبيا: الدولار 8.65 .. الذهب كسر 415.5 .. الإسمنت 45 .. ترقبوا تحديثات سلة المعيشة .. 🐂
+             📢 تورو ليبيا: الدولار 8.65 .. الذهب كسر 415.5 .. الإسمنت 45 .. سولانا تشهد ارتفاعاً .. 🐂
         </div>
     </div>
 
@@ -94,14 +94,17 @@ full_code = """
             <h2 class="section-title">💵 أسعار العملات الموازية</h2>
             <div class="price-item"><span>🇺🇸 دولار موازي</span><span id="val-usd" class="price-val text-cyan-400 text-lg">8.65</span></div>
             <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="price-val text-lg">9.12</span></div>
+            <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="price-val text-lg">10.85</span></div>
             <div class="price-item"><span>🇹🇳 دينار تونسي</span><span class="price-val text-lg">2.65</span></div>
             <div class="price-item"><span>🇪🇬 جنيه مصري</span><span class="price-val text-lg text-green-400">0.17</span></div>
         </div>
 
         <div class="glass p-5 mt-6 border-l-4 border-yellow-400">
             <h2 class="section-title">✨ الذهب والمعادن</h2>
-            <div class="price-item"><span>💍 ذهب جديد (عيار 21)</span><span class="price-val text-yellow-500">485.0</span></div>
-            <div class="price-item"><span>✨ ذهب كسر (عيار 18)</span><span class="price-val text-yellow-400">415.5</span></div>
+            <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="price-val text-yellow-500">485.0</span></div>
+            <div class="price-item"><span>✨ ذهب كسر (18)</span><span class="price-val text-yellow-400">415.5</span></div>
+            <div class="price-item"><span>🥈 فضة (جرام)</span><span class="price-val text-gray-300">5.40</span></div>
+            <div class="price-item"><span>🥉 نحاس (كيلو)</span><span class="price-val text-orange-400">42.0</span></div>
         </div>
 
         <div class="glass p-5 mt-6 border-l-4 border-orange-500">
@@ -115,6 +118,7 @@ full_code = """
             <h2 class="section-title">🪙 العملات الرقمية</h2>
             <div class="price-item"><span>₿ Bitcoin (BTC)</span><span class="price-val text-green-400">$96,430</span></div>
             <div class="price-item"><span>Ξ Ethereum (ETH)</span><span class="price-val text-blue-400">$3,345</span></div>
+            <div class="price-item"><span>☀️ Solana (SOL)</span><span class="price-val text-purple-400">$242.15</span></div>
         </div>
 
         <div class="glass p-6 border-2 border-cyan-500/30 mt-8 mb-12">
@@ -149,4 +153,4 @@ full_code = """
 </html>
 """
 
-st.components.v1.html(full_code, height=2500, scrolling=True)
+st.components.v1.html(full_code, height=2700, scrolling=True)
