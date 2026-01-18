@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الاحترافية - TORO LIBYA
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود المحدث بجميع الأقسام الجديدة والفصل الاحترافي
+# الكود المحدث مع العملة التونسية وتغيير موقع الحاسبة
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -18,6 +18,7 @@ full_code = """
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
         .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
+        /* شريط الأخبار المباشر */
         .marquee-wrapper { width: 100%; position: fixed; top: 0; left: 0; background: rgba(8, 51, 68, 0.95); border-bottom: 1px solid #22d3ee; z-index: 9999; padding: 8px 0; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 13px; font-weight: bold; color: #22d3ee; }
@@ -26,8 +27,10 @@ full_code = """
         .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
 
-        .main-container { padding: 80px 20px 350px 20px; display: flex; flex-direction: column; items: center; }
+        .main-container { padding: 80px 20px 50px 20px; display: flex; flex-direction: column; items: center; }
         
+        /* تنسيق الحاسبة - موقع جديد تحت الأقسام */
+        .calc-wrapper { width: 100%; max-width: 448px; margin-top: 10px; }
         .calc-box { background: #111827; border: 1px solid #374151; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; margin-bottom: 10px; transition: 0.3s; }
         .calc-box:focus-within { border-color: #22d3ee; box-shadow: 0 0 10px rgba(34, 211, 238, 0.2); }
         .calc-box input { background: transparent !important; border: none !important; padding: 12px 5px !important; width: 100% !important; color: white !important; font-family: sans-serif !important; direction: ltr !important; text-align: center !important; outline: none !important; font-weight: bold; font-size: 1.1rem; }
@@ -54,7 +57,7 @@ full_code = """
                 <h2 class="section-title">💵 العملات العالمية</h2>
                 <div class="price-item"><span>🇺🇸 دولار موازي</span><span class="font-bold text-cyan-400">8.65</span></div>
                 <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="font-bold">9.12</span></div>
-                <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="font-bold">10.85</span></div>
+                <div class="price-item"><span>🇹🇳 دينار تونسي</span><span class="font-bold text-blue-300">2.65</span></div>
                 <div class="price-item"><span>🇹🇷 ليرة تركية</span><span class="font-bold text-red-400">0.26</span></div>
                 <div class="price-item"><span>🇪🇬 جنيه مصري</span><span class="font-bold text-green-400">0.17</span></div>
             </div>
@@ -92,33 +95,15 @@ full_code = """
                 <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
                 <div class="price-item"><span>🍚 أرز (كيلو)</span><span class="font-bold">5.00</span></div>
             </div>
-        </div>
 
-        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-1/2">
-            <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
-            <div class="calc-box"><input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="0.00"><span class="symbol">LYD</span></div>
-            <div class="grid grid-cols-2 gap-3">
-                <div class="calc-box"><span class="symbol">$</span><input type="text" id="usd" oninput="runCalc('usd')" placeholder="0.00"></div>
-                <div class="calc-box"><span class="symbol">€</span><input type="text" id="eur" oninput="runCalc('eur')" placeholder="0.00"></div>
+            <div class="calc-wrapper glass p-6 border-2 border-cyan-500/40">
+                <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
+                <div class="calc-box"><input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="0.00"><span class="symbol">LYD</span></div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="calc-box"><span class="symbol">$</span><input type="text" id="usd" oninput="runCalc('usd')" placeholder="0.00"></div>
+                    <div class="calc-box"><span class="symbol">€</span><input type="text" id="eur" oninput="runCalc('eur')" placeholder="0.00"></div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        const rateUsd = 8.65, rateEur = 9.12;
-        function toEn(s) { return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, ''); }
-        function runCalc(id) {
-            const el = document.getElementById(id); el.value = toEn(el.value);
-            let val = parseFloat(el.value) || 0;
-            const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
-            if(id === 'lyd'){ u.value = val > 0 ? (val / rateUsd).toFixed(2) : ""; e.value = val > 0 ? (val / rateEur).toFixed(2) : ""; }
-            else if(id === 'usd'){ l.value = val > 0 ? (val * rateUsd).toFixed(2) : ""; e.value = val > 0 ? ((val * rateUsd) / rateEur).toFixed(2) : ""; }
-            else if(id === 'eur'){ l.value = val > 0 ? (val * rateEur).toFixed(2) : ""; u.value = val > 0 ? ((val * rateEur) / rateUsd).toFixed(2) : ""; }
-            if(val === 0) { if(id==='lyd'){u.value=e.value=""} if(id==='usd'){l.value=e.value=""} if(id==='eur'){l.value=u.value=""} }
-        }
-    </script>
-</body>
-</html>
-"""
-
-st.components.v1.html(full_code, height=2200, scrolling=True)
+        
+        <p class="text-gray-600 text-[10px] mt-10
