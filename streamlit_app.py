@@ -80,4 +80,3 @@ full_code = """
 
             <div class="glass p-5">
                 <h2 class="section-title">🛒
-                
