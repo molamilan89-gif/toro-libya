@@ -1,107 +1,48 @@
 import streamlit as st
 
-# إعدادات الصفحة الأساسية
-st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
+# 1. إعدادات الصفحة
+st.set_page_config(page_title="Toro Libya | تورو ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل والمصلح لتجنب أي أخطاء في المتصفح
-full_code = """
+# 2. بناء الواجهة باستخدام HTML و CSS (التصميم العالمي)
+full_design = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toro Libya - منصة وول ستريت ليبيا</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; background: #0b1120; color: white; margin: 0; padding: 0; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; }
+        body { font-family: 'Tajawal', sans-serif; background: #0b1120; color: white; margin: 0; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 15px; padding: 20px; }
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
-        .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .price-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .marquee-container { width: 100%; overflow: hidden; background: #083344; py: 8px; position: fixed; top: 0; z-index: 100; border-bottom: 1px solid #22d3ee; }
+        .marquee-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; color: #22d3ee; font-size: 14px; font-weight: bold; padding: 5px 0; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
-        .main-container { padding: 20px; display: flex; flex-direction: column; items: center; padding-bottom: 320px; }
-        
-        /* تنسيق خانات الإدخال */
-        input { 
-            font-family: sans-serif !important; 
-            direction: ltr !important; 
-            background: #111827 !important;
-            border: 1px solid #374151 !important;
-            border-radius: 0.5rem !important;
-            padding: 0.75rem !important;
-            width: 100% !important;
-            color: white !important;
-            text-align: center !important;
-            outline: none !important;
-        }
-        input:focus { border-color: #22d3ee !important; }
+        .calc-input { background: #111827; border: 1px solid #374151; border-radius: 10px; padding: 12px; width: 100%; color: white; text-align: center; font-family: sans-serif; font-weight: bold; outline: none; margin-bottom: 10px; }
+        .calc-input:focus { border-color: #22d3ee; }
     </style>
 </head>
 <body>
-    <div class="w-full fixed top-0 left-0 bg-cyan-950/90 py-2 z-[100] border-b border-cyan-500/30">
-        <div class="animate-marquee text-cyan-400 text-xs font-bold">
-            📢 عاجل: Toro Libya يطلق التحديث الشامل لأسعار الذهب والعملات .. 🛢️ خام برنت مستقر عند 78.40$ .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 منصة تورو ليبيا: المؤشر الاقتصادي الأول في البلاد ..
+    <div class="marquee-container">
+        <div class="marquee-text">
+             📢 عاجل: Toro Libya يطلق التحديث الشامل لأسعار الذهب والعملات .. 🛢️ خام برنت مستقر عند 78.40$ .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا ..
         </div>
     </div>
 
-    <div class="main-container">
-        <div class="text-center mt-12 mb-8">
-            <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
-            <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
+    <div style="padding: 60px 20px 350px 20px; max-width: 500px; margin: auto;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="font-size: 48px; font-weight: 900; letter-spacing: 4px; margin: 0;">TORO <span style="color: #22d3ee;">LY</span></h1>
+            <p style="color: #64748b; font-size: 12px; text-transform: uppercase;">المؤشر الاقتصادي الليبي المتكامل</p>
         </div>
 
-        <div class="w-full max-w-md">
-            <div class="glass p-5">
-                <h2 class="section-title">💵 العملات والذهب</h2>
-                <div class="price-item"><span>🇺🇸 دولار موازي</span><span class="font-bold text-cyan-400">8.65</span></div>
-                <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="font-bold">9.12</span></div>
-                <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="font-bold">10.85</span></div>
-                <div class="price-item"><span>✨ ذهب كسر (18)</span><span class="font-bold text-yellow-500">415.5</span></div>
-                <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="font-bold text-yellow-600">485.0</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">🪙 العملات الرقمية</h2>
-                <div class="price-item"><span>₿ Bitcoin</span><span class="text-green-400 font-bold">$96,430</span></div>
-                <div class="price-item"><span>Ξ Ethereum</span><span class="text-green-400 font-bold">$3,750</span></div>
-                <div class="price-item"><span>💠 Solana (SOL)</span><span class="text-green-400 font-bold">$195.20</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">⛽ الطاقة والنفط</h2>
-                <div class="price-item"><span>🛢️ خام برنت</span><span class="font-bold text-green-400">$78.40</span></div>
-                <div class="price-item"><span>🔥 غاز الطهي</span><span class="font-bold">5.00 LYD</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">🏗️ مواد البناء</h2>
-                <div class="price-item"><span>🧱 إسمنت (قنطار)</span><span class="font-bold">45.00</span></div>
-                <div class="price-item"><span>⛓️ حديد (الطن)</span><span class="font-bold">4100</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">🛒 السلع الأساسية</h2>
-                <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
-                <div class="price-item"><span>🍚 أرز (كيلو)</span><span class="font-bold">5.00</span></div>
-            </div>
+        <div class="glass">
+            <h2 class="section-title">💵 العملات والذهب</h2>
+            <div class="price-item"><span>🇺🇸 دولار موازي</span><span style="color: #22d3ee; font-weight: bold;">8.65</span></div>
+            <div class="price-item"><span>🇪🇺 يورو موازي</span><span style="font-weight: bold;">9.12</span></div>
+            <div class="price-item"><span>✨ ذهب كسر (18)</span><span style="color: #eab308; font-weight: bold;">415.5</span></div>
         </div>
 
-        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-1/2">
-            <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
-            <input type="text" id="lyd" oninput="runConvert('lyd')" placeholder="دينار ليبي" class="mb-3">
-            <div class="grid grid-cols-2 gap-3">
-                <input type="text" id="usd" oninput="runConvert('usd')" placeholder="دولار $">
-                <input type="text" id="eur" oninput="runConvert('eur')" placeholder="يورو €">
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const rateUsd = 8.65, rateEur = 9.12;
-
-        function toEn(str) {
-            return str.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, '');
-        }
-
-        function runConvert
+        <div class="glass">
+            <h2 class="section-title">🪙 العملات الرقمية</h2>
+            <div class="price-item"><span>₿ Bitcoin</span><span style="color: #4ade80; font-weight: bold;">$96
