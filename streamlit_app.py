@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الاحترافية - TORO LIBYA
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل والنهائي (النسخة الشاملة + قسم التوصيات والنبض)
+# الكود الكامل والنهائي الشامل لجميع الأقسام والميزات
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -20,7 +20,6 @@ full_code = """
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
         .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
-        /* شريط الأخبار */
         .marquee-wrapper { width: 100%; position: fixed; top: 0; left: 0; background: rgba(8, 51, 68, 0.95); border-bottom: 1px solid #22d3ee; z-index: 9999; padding: 8px 0; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 13px; font-weight: bold; color: #22d3ee; }
@@ -34,7 +33,6 @@ full_code = """
 
         .main-container { padding: 80px 20px 50px 20px; display: flex; flex-direction: column; items: center; }
         
-        /* مؤشر نبض السوق */
         .market-pulse-bar { height: 6px; width: 100%; background: #1e293b; border-radius: 10px; margin: 10px 0; overflow: hidden; }
         .pulse-fill { height: 100%; width: 75%; background: linear-gradient(90deg, #22d3ee, #4ade80); }
 
@@ -47,7 +45,7 @@ full_code = """
 <body>
     <div class="marquee-wrapper">
         <div class="animate-marquee">
-            📢 عاجل: Toro Libya يطلق قسم التوصيات الذكية .. 🛢️ برنت $78.40 .. 💍 ذهب عيار 18 كسر بـ 415.5 دينار .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 تورو ليبيا: وجهتك الاقتصادية الأولى ..
+            📢 عاجل: Toro Libya يعزز ثقة المتداولين بنظام التوصيات الجديد .. 🛢️ برنت $78.40 .. 💍 ذهب عيار 18 كسر بـ 415.5 دينار .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 تورو ليبيا: وجهتك الاقتصادية الأولى ..
         </div>
     </div>
 
@@ -88,7 +86,7 @@ full_code = """
                     <div class="pulse-fill"></div>
                 </div>
                 <p class="text-[11px] text-gray-400 mt-2 italic">⚠️ نصيحة اليوم: استقرار نسبي في سعر الصرف، الوقت ملائم لشراء الذهب كادخار طويل الأمد.</p>
-                <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3 border border-green-600/30 hover:bg-green-600/40 transition">💬 استشارة عبر الواتساب</a>
+                <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3 border border-green-600/30 hover:bg-green-600/40 transition">💬 استشارة مباشرة (واتساب)</a>
             </div>
 
             <div class="glass p-5 mb-8">
@@ -197,4 +195,4 @@ full_code = """
 </html>
 """
 
-st.components.v1.html(full_code, height=3300, scrolling=True)
+st.components.v1.html(full_code, height=3500, scrolling=True)
