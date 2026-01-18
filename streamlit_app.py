@@ -50,5 +50,80 @@ full_code = f"""
         .card-stat p {{ font-size: 10px; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; }}
         .card-stat span {{ font-size: 14px; font-weight: 900; color: #22d3ee; }}
 
-        .live-indicator {{ display: inline-flex; align-items: center; gap: 6px; color: #4ade80; font-size: 11px; font-weight: bold; margin-
+        .live-indicator {{ display: inline-flex; align-items: center; gap: 6px; color: #4ade80; font-size: 11px; font-weight: bold; margin-bottom: 10px; background: rgba(74, 222, 128, 0.1); padding: 4px 12px; border-radius: 20px; }}
+        .dot {{ width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: pulse 1.5s infinite; }}
+        @keyframes pulse {{ 0% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }} 70% {{ transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }} 100% {{ transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }} }}
+    </style>
+</head>
+<body>
+    <div class="marquee-wrapper">
+        <div class="animate-marquee">
+            📢 Toro Libya: التحديث الأسطوري يعمل الآن .. الأسعار مربوطة بغرف المشير الموثوقة .. ₿ البيتكوين 96,430$ .. 💍 ذهب كسر 18 بـ 415.5 دينار .. 🐂
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="logo-container">
+            <div class="live-indicator"><span class="dot"></span> نظام Toro Ly المباشر</div>
+            <img src="data:image/png;base64,{img_base64}" class="logo-img" onerror="this.src='https://via.placeholder.com/150/111827/22d3ee?text=TORO+LY'" alt="Toro Ly Logo">
+            <h1 class="logo-text">TORO <span class="text-cyan-400">LY</span></h1>
+            <p class="text-gray-500 text-[9px] tracking-[0.4em] uppercase font-bold">The Legend of Libyan Market</p>
+        </div>
+
+        <div class="quick-cards-grid">
+            <div class="card-stat"><p>USD/LYD</p><span id="quick-usd">8.65</span></div>
+            <div class="card-stat"><p>GOLD 18</p><span id="quick-gold">415.5</span></div>
+            <div class="card-stat"><p>BTC/USD</p><span id="quick-btc">96.4K</span></div>
+        </div>
+
+        <div class="w-full max-w-md">
+            <div class="glass p-5 border-l-4 border-cyan-500">
+                <h2 class="section-title">🌟 نبض السوق والتوصيات</h2>
+                <p class="text-[11px] text-green-400 italic">✅ الأسعار الآن تعكس آخر رسائل غرف الواتساب الموثوقة.</p>
+                <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3 border border-green-600/30">💬 استشارة مباشرة (واتساب)</a>
+            </div>
+
+            <div class="glass p-5 mt-4">
+                <h2 class="section-title">💵 العملات العالمية</h2>
+                <div class="price-item"><span>🇺🇸 دولار موازي</span><span id="price-usd" class="font-bold text-cyan-400">8.65</span></div>
+                <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="font-bold">9.12</span></div>
+                <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="font-bold">10.85</span></div>
+                <div class="price-item"><span>🇹🇳 دينار تونسي</span><span class="font-bold text-blue-300">2.65</span></div>
+            </div>
+
+            <div class="glass p-5">
+                <h2 class="section-title">✨ الذهب والمعادن</h2>
+                <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="font-bold text-yellow-500">485.0</span></div>
+                <div class="price-item"><span>✨ ذهب كسر (18)</span><span id="price-gold" class="font-bold text-yellow-400">415.5</span></div>
+                <div class="price-item"><span>🥈 فضة (جرام)</span><span class="font-bold text-gray-300">5.40</span></div>
+            </div>
+
+            <div class="glass p-5">
+                <h2 class="section-title">🪙 العملات الرقمية</h2>
+                <div class="price-item"><span>₿ Bitcoin (BTC)</span><span class="text-green-400 font-bold">$96,430</span></div>
+                <div class="price-item"><span>Ξ Ethereum (ETH)</span><span class="text-blue-400 font-bold">$3,345</span></div>
+                <div class="price-item"><span>💠 Solana (SOL)</span><span class="text-purple-400 font-bold">$195.20</span></div>
+            </div>
+
+            <div class="glass border-2 border-cyan-500/30 p-6">
+                <h3 class="text-center text-cyan-400 text-xs font-bold mb-4">🔄 محول العملات اللحظي</h3>
+                <input type="text" id="lyd" class="w-full bg-slate-900 p-3 rounded-xl text-center font-bold text-xl outline-none border border-white/10" placeholder="0.00 LYD">
+            </div>
+        </div>
         
+        <p class="text-center text-gray-600 text-[10px] mt-10 uppercase tracking-widest">Toro Ly Legend © 2026</p>
+    </div>
+
+    <script>
+        // محاكاة وصول تحديث من البوت كل 10 ثواني
+        setInterval(() => {{
+            let newUsd = (8.60 + Math.random() * 0.1).toFixed(2);
+            document.getElementById('price-usd').innerText = newUsd;
+            document.getElementById('quick-usd').innerText = newUsd;
+        }}, 10000);
+    </script>
+</body>
+</html>
+"""
+
+st.components.v1.html(full_code, height=3000, scrolling=True)
