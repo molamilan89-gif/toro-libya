@@ -1,68 +1,111 @@
 import streamlit as st
 import datetime
 
-# إعدادات الصفحة الاحترافية
-st.set_page_config(page_title="TORO LY | تورو ليبيا", page_icon="🐂", layout="centered")
+# --- إعدادات النظام العالمي ---
+st.set_page_config(page_title="TORO LY PRO | تورو ليبيا المطور", page_icon="👑", layout="centered")
 
-# التنسيق البصري (CSS) ليصبح مثل التطبيقات العالمية
+# --- محرك التنسيق البصري (CSS) ---
 st.markdown("""
     <style>
-    .stApp { background-color: #0e1117; color: white; direction: rtl; }
-    .main-title { text-align: center; font-size: 3em; font-weight: bold; color: #00d4ff; margin-bottom: 0px; }
-    .sub-title { text-align: center; color: #888; margin-bottom: 30px; }
-    .card {
-        background: linear-gradient(145deg, #1a1c24, #14161d);
-        padding: 25px; border-radius: 20px;
-        border-right: 6px solid #00d4ff; margin-bottom: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+    
+    html, body, [class*="css"] { font-family: 'Tajawal', sans-serif; direction: rtl; }
+    .stApp { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: white; }
+    
+    .main-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 25px;
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
     }
-    .price-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #2d3139; }
-    .price-label { font-size: 1.1em; color: #ddd; }
-    .price-value { font-size: 1.2em; color: #4caf50; font-weight: bold; }
+    .main-card:hover { transform: translateY(-5px); border-color: #00d4ff; }
+    
+    .status-badge {
+        padding: 5px 15px; border-radius: 50px; font-size: 0.8em; font-weight: bold;
+        background: #4caf50; color: white; float: left;
+    }
+    
+    .price-text { font-size: 1.4em; color: #00d4ff; font-weight: bold; }
+    .label-text { color: #ccc; font-size: 1em; }
+    .section-title { border-right: 4px solid #00d4ff; padding-right: 15px; margin-bottom: 20px; color: #fff; }
     </style>
     """, unsafe_allow_html=True)
 
-# اللوجو والعنوان الاحترافي
-st.markdown("<div class='main-title'>TORO <span style='color:white'>LY</span> 🐂</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'>المؤشر الاقتصادي الليبي المتكامل</div>", unsafe_allow_html=True)
+# --- الهيدر الأسطوري ---
+st.markdown("<h1 style='text-align: center; color: #00d4ff; font-size: 3.5em; margin-bottom:0;'>TORO <span style='color:#fff'>LY</span> PRO</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #888; margin-top:0;'>الجيل القادم من المؤشرات الاقتصادية الليبية</p>", unsafe_allow_html=True)
+st.markdown("---")
 
-# دالة عرض البيانات في بطاقات
-def create_card(title, emoji, items):
-    st.markdown(f"""
-    <div class="card">
-        <h2 style="margin-top:0;">{emoji} {title}</h2>
-    """, unsafe_allow_html=True)
-    for label, price in items.items():
-        st.markdown(f"""
-        <div class="price-row">
-            <span class="price-label">{label}</span>
-            <span class="price-value">{price}</span>
-        </div>
-        """, unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
+# --- قسم: نبض السوق (قسم غير موجود في المواقع الأخرى) ---
+col_s1, col_s2, col_s3 = st.columns(3)
+with col_s1:
+    st.markdown("<div class='main-card' style='text-align:center;'>🌡️ نبض السوق<br><b style='color:#4caf50'>مستقر نسبياً</b></div>", unsafe_allow_html=True)
+with col_s2:
+    st.markdown("<div class='main-card' style='text-align:center;'>📊 الطلب<br><b style='color:#ff9800'>متوسط</b></div>", unsafe_allow_html=True)
+with col_s3:
+    st.markdown("<div class='main-card' style='text-align:center;'>📉 العرض<br><b style='color:#00d4ff'>وفير</b></div>", unsafe_allow_html=True)
 
-# 1. قسم العملات والذهب
-create_card("العملات والذهب", "💵", {
-    "🇺🇸 دولار موازي": "8.65",
-    "🇪🇺 يورو موازي": "9.12",
-    "✨ ذهب كسر (18)": "415.5"
-})
+# --- دالة صنع البطاقات الأسطورية ---
+def display_pro_card(title, icon, data_dict):
+    st.markdown(f"<h3 class='section-title'>{icon} {title}</h3>", unsafe_allow_html=True)
+    with st.container():
+        for label, price in data_dict.items():
+            st.markdown(f"""
+            <div class="main-card">
+                <span class="label-text">{label}</span>
+                <span class="price-text" style="float:left;">{price}</span>
+            </div>
+            """, unsafe_allow_html=True)
 
-# 2. قسم الطاقة
-create_card("الطاقة والنفط", "⛽", {
-    "🛢️ خام برنت": "$78.40",
-    "🔥 غاز الطهي": "5.00 LYD"
-})
+# --- الأقسام المبتكرة ---
+col1, col2 = st.columns(2)
 
-# 3. حاسبة تحويل العملة المتطورة
-st.markdown("<br><h3 style='text-align:right;'>🔄 حاسبة تحويل العملة (دولار/دينار)</h3>", unsafe_allow_html=True)
+with col1:
+    display_pro_card("العملات العالمية", "🏦", {
+        "🇺🇸 دولار موازي": "8.65",
+        "🇪🇺 يورو موازي": "9.12",
+        "🇬🇧 استرليني": "10.45"
+    })
+    
+    display_pro_card("الكريبتو و USDT", "🪙", {
+        "₿ Bitcoin": "$96,400",
+        "💎 Solana": "$210.5",
+        "💵 USDT/LYD": "8.68"
+    })
+
+with col2:
+    display_pro_card("المعادن والذهب", "✨", {
+        "🟡 كسر 18": "415.5",
+        "🟠 كسر 24": "554.0",
+        "⚪ فضة خام": "5.20"
+    })
+    
+    display_pro_card("مواد البناء", "🧱", {
+        "🏗️ حديد (طن)": "4100",
+        "⚪ إسمنت (قنطار)": "45.0"
+    })
+
+# --- الحاسبة المتطورة (UI التفاعلي) ---
+st.markdown("<br><h3 class='section-title'>🔄 المحول الذكي (دولار ⇆ دينار)</h3>", unsafe_allow_html=True)
 with st.container():
-    col1, col2 = st.columns(2)
-    with col1:
-        usd_amount = st.number_input("المبلغ بالدولار ($):", min_value=0.0, value=1.0, step=1.0)
-    with col2:
-        lyd_price = 8.65  # سعر الصرف الافتراضي
-        total = usd_amount * lyd_price
-        st.metric(label="القيمة بالدينار الليبي", value=f"{total:,.2f} LYD")
+    calc_col1, calc_col2 = st.columns([2, 1])
+    with calc_col1:
+        val = st.number_input("أدخل المبلغ:", min_value=0.0, value=1.0, step=10.0)
+    with calc_col2:
+        mode = st.selectbox("النوع:", ["من دولار إلى ليبي", "من ليبي إلى دولار"])
+    
+    rate = 8.65
+    if mode == "من دولار إلى ليبي":
+        result = val * rate
+        st.success(f"النتيجة: {result:,.2f} دينار ليبي")
+    else:
+        result = val / rate
+        st.info(f"النتيجة: {result:,.2f} دولار أمريكي")
 
-st.markdown(f"<p style='text-align: center; color: #555; margin-top: 50px;'>آخر تحديث: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}</p>", unsafe_allow_html=True)
+# --- الفوتر (التذييل) ---
+st.markdown("<br><hr>", unsafe_allow_html=True)
+st.markdown(f"<p style='text-align: center; color: #555;'>تطوير أسطورة | TORO LY PRO © {datetime.datetime.now().year}</p>", unsafe_allow_html=True)
+st.markdown(f"<p style='text-align: center; color: #444; font-size:0.8em;'>آخر تحديث للبيانات: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}</p>", unsafe_allow_html=True)
