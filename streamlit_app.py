@@ -1,9 +1,9 @@
 import streamlit as st
 
-# إعدادات الصفحة
+# إعدادات الصفحة الاحترافية
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# هذا هو الكود الذي يعيد لك مشروعك القديم بالكامل مع الحاسبة المتطورة
+# الكود الكامل والمحسن
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -17,9 +17,18 @@ full_code = """
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; }
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
         .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* شريط الأخبار المباشر المحسن */
+        .marquee-wrapper { width: 100%; position: fixed; top: 0; left: 0; background: rgba(8, 51, 68, 0.95); border-bottom: 1px solid #22d3ee; z-index: 9999; padding: 8px 0; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
-        .main-container { padding: 20px; display: flex; flex-direction: column; items: center; padding-bottom: 350px; }
+        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 13px; font-weight: bold; color: #22d3ee; }
+        
+        /* مؤشر البث المباشر */
+        .live-indicator { display: inline-flex; align-items: center; gap: 5px; color: #4ade80; font-size: 10px; font-weight: bold; margin-bottom: 10px; }
+        .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
+
+        .main-container { padding: 60px 20px 350px 20px; display: flex; flex-direction: column; items: center; }
         
         /* إجبار الأرقام على الصيغة الإنجليزية */
         input { font-family: sans-serif !important; direction: ltr !important; background: #111827 !important; color: white !important; }
@@ -27,14 +36,18 @@ full_code = """
     </style>
 </head>
 <body>
-    <div class="w-full fixed top-0 left-0 bg-cyan-950/90 py-2 z-[100] border-b border-cyan-500/30">
-        <div class="animate-marquee text-cyan-400 text-xs font-bold">
+    <div class="marquee-wrapper">
+        <div class="animate-marquee">
             📢 عاجل: Toro Libya يطلق التحديث الشامل لأسعار الذهب والعملات .. 🛢️ خام برنت مستقر عند 78.40$ .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 منصة تورو ليبيا: المؤشر الاقتصادي الأول في البلاد ..
         </div>
     </div>
 
     <div class="main-container">
-        <div class="text-center mt-12 mb-8">
+        <div class="live-indicator">
+            <span class="dot"></span> مباشر - تحديث تلقائي
+        </div>
+
+        <div class="text-center mb-8">
             <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
             <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
         </div>
@@ -74,41 +87,4 @@ full_code = """
             </div>
         </div>
 
-        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-1/2">
-            <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
-            <input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="دينار ليبي" class="w-full border border-gray-700 rounded-lg p-3 mb-3 text-lg font-bold text-center outline-none">
-            <div class="grid grid-cols-2 gap-3">
-                <input type="text" id="usd" oninput="runCalc('usd')" placeholder="دولار $" class="w-full border border-gray-700 rounded-lg p-2 text-md font-bold text-cyan-400 text-center outline-none">
-                <input type="text" id="eur" oninput="runCalc('eur')" placeholder="يورو €" class="w-full border border-gray-700 rounded-lg p-2 text-md font-bold text-center outline-none">
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const rateUsd = 8.65, rateEur = 9.12;
-        
-        // تحويل الأرقام العربية المكتوبة إلى إنجليزية فوراً
-        function toEn(s) {
-            return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, '');
-        }
-
-        function runCalc(id) {
-            const el = document.getElementById(id);
-            el.value = toEn(el.value); // تحويل المدخل
-            let val = parseFloat(el.value) || 0;
-            const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
-
-            if(id=='lyd'){ u.value=(val/rateUsd).toFixed(2); e.value=(val/rateEur).toFixed(2); }
-            else if(id=='usd'){ l.value=(val*rateUsd).toFixed(2); e.value=((val*rateUsd)/rateEur).toFixed(2); }
-            else if(id=='eur'){ l.value=(val*rateEur).toFixed(2); u.value=((val*rateEur)/rateUsd).toFixed(2); }
-            
-            // تنظيف الخانات إذا كانت فارغة
-            if(val === 0) { l.value = u.value = e.value = ""; }
-        }
-    </script>
-</body>
-</html>
-"""
-
-# عرض المشروع بالكامل بدون أخطاء
-st.components.v1.html(full_code, height=1800, scrolling=True)
+        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-
