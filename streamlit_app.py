@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الأساسية
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل مع تعديل لغة أرقام الحاسبة
+# الكود الكامل مع "فلتر" تحويل الأرقام العربية إلى إنجليزية تلقائياً
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -22,8 +22,12 @@ full_code = """
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
         .main-container { padding: 20px; display: flex; flex-direction: column; items: center; padding-bottom: 300px; }
         
-        /* ضمان ظهور الأرقام بالصيغة الإنجليزية في الحاسبة */
-        input { font-family: sans-serif !important; direction: ltr !important; }
+        /* إجبار الخانات على عرض الأرقام الإنجليزية */
+        input { 
+            font-family: sans-serif !important; 
+            direction: ltr !important; 
+            -webkit-appearance: none;
+        }
         input::placeholder { font-family: 'Tajawal', sans-serif; direction: rtl !important; }
     </style>
 </head>
@@ -76,41 +80,4 @@ full_code = """
                 <h2 class="section-title">🛒 السلع الأساسية</h2>
                 <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
                 <div class="price-item"><span>🍚 أرز (كيلو)</span><span class="font-bold">5.00</span></div>
-                <div class="price-item"><span>🥛 حليب (علبة)</span><span class="font-bold">4.50</span></div>
-            </div>
-        </div>
-
-        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-1/2">
-            <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
-            <input type="number" id="lyd" oninput="convert('lyd')" placeholder="دينار ليبي" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 mb-3 text-lg font-bold text-white text-center outline-none">
-            <div class="grid grid-cols-2 gap-3">
-                <input type="number" id="usd" oninput="convert('usd')" placeholder="دولار $" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-md font-bold text-cyan-400 text-center outline-none">
-                <input type="number" id="eur" oninput="convert('eur')" placeholder="يورو €" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-md font-bold text-white text-center outline-none">
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const rateUsd = 8.65, rateEur = 9.12;
-        function convert(s) {
-            const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
-            if(s=='lyd'){ 
-                u.value = (l.value / rateUsd).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
-                e.value = (l.value / rateEur).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
-            }
-            else if(s=='usd'){ 
-                l.value = (u.value * rateUsd).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
-                e.value = ((u.value * rateUsd) / rateEur).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
-            }
-            else if(s=='eur'){ 
-                l.value = (e.value * rateEur).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
-                u.value = ((e.value * rateEur) / rateUsd).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
-            }
-        }
-    </script>
-</body>
-</html>
-"""
-
-# تشغيل الكود في Streamlit
-st.components.v1.html(full_code, height=1800, scrolling=True)
+                <div class="price-item"><span>🥛 حليب (علبة)</span><span class="font-bold">4.50
