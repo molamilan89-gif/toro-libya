@@ -123,5 +123,74 @@ full_code = """
             <div class="glass p-5">
                 <h2 class="section-title">🛒 السلع الأساسية</h2>
                 <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
-                
+                <div class="price-item"><span>🍚 أرز (كيلو)</span><span class="font-bold">5.00</span></div>
+                <div class="price-item"><span>🥛 حليب (علبة)</span><span class="font-bold">4.50</span></div>
+            </div>
 
+            <div class="calc-wrapper glass p-6 border-2 border-cyan-500/40">
+                <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
+                <div class="calc-box"><input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="0.00"><span class="symbol">LYD</span></div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="calc-box"><span class="symbol">$</span><input type="text" id="usd" oninput="runCalc('usd')" placeholder="0.00"></div>
+                    <div class="calc-box"><span class="symbol">€</span><input type="text" id="eur" oninput="runCalc('eur')" placeholder="0.00"></div>
+                </div>
+            </div>
+        </div>
+        
+        <p class="text-gray-600 text-[10px] mt-10">Toro Ly Pro © 2026</p>
+    </div>
+
+    <script>
+        // برمجة تشارت الكريبتو الاحترافي
+        const ctx = document.getElementById('cryptoStyleChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(74, 222, 128, 0.3)');
+        gradient.addColorStop(1, 'rgba(74, 222, 128, 0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+                datasets: [{
+                    label: 'السعر المباشر',
+                    data: [8.62, 8.65, 8.63, 8.67, 8.65, 8.68, 8.65],
+                    borderColor: '#4ade80',
+                    borderWidth: 2,
+                    fill: true,
+                    backgroundColor: gradient,
+                    tension: 0.1, // لجعله يبدو حاداً قليلاً مثل منصات التداول
+                    pointRadius: 2,
+                    pointHoverRadius: 6,
+                    pointHitRadius: 10,
+                    pointBackgroundColor: '#4ade80',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 10 } } },
+                    x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+
+        // برمجة الحاسبة
+        const rateUsd = 8.65, rateEur = 9.12;
+        function toEn(s) { return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, ''); }
+        function runCalc(id) {
+            const el = document.getElementById(id); el.value = toEn(el.value);
+            let val = parseFloat(el.value) || 0;
+            const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
+            if(id === 'lyd'){ u.value = val > 0 ? (val / rateUsd).toFixed(2) : ""; e.value = val > 0 ? (val / rateEur).toFixed(2) : ""; }
+            else if(id === 'usd'){ l.value = val > 0 ? (val * rateUsd).toFixed(2) : ""; e.value = val > 0 ? ((val * rateUsd) / rateEur).toFixed(2) : ""; }
+            else if(id === 'eur'){ l.value = val > 0 ? (val * rateEur).toFixed(2) : ""; u.value = val > 0 ? ((val * rateEur) / rateUsd).toFixed(2) : ""; }
+            if(val === 0) { if(id==='lyd'){u.value=e.value=""} if(id==='usd'){l.value=e.value=""} if(id==='eur'){l.value=u.value=""} }
+        }
+    </script>
+</body>
+</html>
+"""
+
+st.components.v1.html(full_code, height=3000, scrolling=True)
