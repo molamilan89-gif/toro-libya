@@ -87,4 +87,39 @@ full_code = """
             </div>
         </div>
 
-        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-
+        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-1/2">
+            <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
+            <input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="دينار ليبي" class="w-full border border-gray-700 rounded-lg p-3 mb-3 text-lg font-bold text-center outline-none">
+            <div class="grid grid-cols-2 gap-3">
+                <input type="text" id="usd" oninput="runCalc('usd')" placeholder="دولار $" class="w-full border border-gray-700 rounded-lg p-2 text-md font-bold text-cyan-400 text-center outline-none">
+                <input type="text" id="eur" oninput="runCalc('eur')" placeholder="يورو €" class="w-full border border-gray-700 rounded-lg p-2 text-md font-bold text-center outline-none">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rateUsd = 8.65, rateEur = 9.12;
+        
+        function toEn(s) {
+            return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, '');
+        }
+
+        function runCalc(id) {
+            const el = document.getElementById(id);
+            el.value = toEn(el.value);
+            let val = parseFloat(el.value) || 0;
+            const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
+
+            if(id=='lyd'){ u.value=(val/rateUsd).toFixed(2); e.value=(val/rateEur).toFixed(2); }
+            else if(id=='usd'){ l.value=(val*rateUsd).toFixed(2); e.value=((val*rateUsd)/rateEur).toFixed(2); }
+            else if(id=='eur'){ l.value=(val*rateEur).toFixed(2); u.value=((val*rateEur)/rateUsd).toFixed(2); }
+            
+            if(val === 0) { l.value = u.value = e.value = ""; }
+        }
+    </script>
+</body>
+</html>
+"""
+
+# عرض المشروع بالكامل
+st.components.v1.html(full_code, height=2000, scrolling=True)
