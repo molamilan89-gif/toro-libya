@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الأساسية
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل مع "فلتر" تحويل الأرقام العربية إلى إنجليزية تلقائياً
+# الكود الكامل والمصلح لتجنب أي أخطاء في المتصفح
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -20,15 +20,22 @@ full_code = """
         .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
-        .main-container { padding: 20px; display: flex; flex-direction: column; items: center; padding-bottom: 300px; }
+        .main-container { padding: 20px; display: flex; flex-direction: column; items: center; padding-bottom: 320px; }
         
-        /* إجبار الخانات على عرض الأرقام الإنجليزية */
+        /* تنسيق خانات الإدخال */
         input { 
             font-family: sans-serif !important; 
             direction: ltr !important; 
-            -webkit-appearance: none;
+            background: #111827 !important;
+            border: 1px solid #374151 !important;
+            border-radius: 0.5rem !important;
+            padding: 0.75rem !important;
+            width: 100% !important;
+            color: white !important;
+            text-align: center !important;
+            outline: none !important;
         }
-        input::placeholder { font-family: 'Tajawal', sans-serif; direction: rtl !important; }
+        input:focus { border-color: #22d3ee !important; }
     </style>
 </head>
 <body>
@@ -52,7 +59,6 @@ full_code = """
                 <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="font-bold">10.85</span></div>
                 <div class="price-item"><span>✨ ذهب كسر (18)</span><span class="font-bold text-yellow-500">415.5</span></div>
                 <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="font-bold text-yellow-600">485.0</span></div>
-                <div class="price-item"><span>🛠️ ذهب مستعمل (18)</span><span class="font-bold text-yellow-400">425.0</span></div>
             </div>
 
             <div class="glass p-5">
@@ -66,18 +72,36 @@ full_code = """
                 <h2 class="section-title">⛽ الطاقة والنفط</h2>
                 <div class="price-item"><span>🛢️ خام برنت</span><span class="font-bold text-green-400">$78.40</span></div>
                 <div class="price-item"><span>🔥 غاز الطهي</span><span class="font-bold">5.00 LYD</span></div>
-                <div class="price-item"><span>⛽ البنزين (لتر)</span><span class="font-bold text-red-400">0.15 LYD</span></div>
             </div>
 
             <div class="glass p-5">
                 <h2 class="section-title">🏗️ مواد البناء</h2>
                 <div class="price-item"><span>🧱 إسمنت (قنطار)</span><span class="font-bold">45.00</span></div>
                 <div class="price-item"><span>⛓️ حديد (الطن)</span><span class="font-bold">4100</span></div>
-                <div class="price-item"><span>🧱 طوب (1000 قطعة)</span><span class="font-bold">1850</span></div>
             </div>
 
             <div class="glass p-5">
                 <h2 class="section-title">🛒 السلع الأساسية</h2>
                 <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
                 <div class="price-item"><span>🍚 أرز (كيلو)</span><span class="font-bold">5.00</span></div>
-                <div class="price-item"><span>🥛 حليب (علبة)</span><span class="font-bold">4.50
+            </div>
+        </div>
+
+        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-1/2">
+            <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
+            <input type="text" id="lyd" oninput="runConvert('lyd')" placeholder="دينار ليبي" class="mb-3">
+            <div class="grid grid-cols-2 gap-3">
+                <input type="text" id="usd" oninput="runConvert('usd')" placeholder="دولار $">
+                <input type="text" id="eur" oninput="runConvert('eur')" placeholder="يورو €">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rateUsd = 8.65, rateEur = 9.12;
+
+        function toEn(str) {
+            return str.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, '');
+        }
+
+        function runConvert
