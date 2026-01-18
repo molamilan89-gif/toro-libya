@@ -164,5 +164,11 @@ full_code = """
             let val = parseFloat(document.getElementById(id).value) || 0;
             if(id === 'lyd'){ u.value = (val / rateUsd).toFixed(2); e.value = (val / rateEur).toFixed(2); }
             else if(id === 'usd'){ l.value = (val * rateUsd).toFixed(2); e.value = ((val * rateUsd) / rateEur).toFixed(2); }
-            else if(id === 'eur'){ l.value = (val *
-            
+            else if(id === 'eur'){ l.value = (val * rateEur).toFixed(2); u.value = ((val * rateEur) / rateUsd).toFixed(2); }
+        }
+    </script>
+</body>
+</html>
+"""
+
+st.components.v1.html(full_code, height=2200, scrolling=True)
