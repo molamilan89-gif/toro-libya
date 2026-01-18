@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الاحترافية - TORO LIBYA
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل والنهائي (النسخة الشاملة مع التشارت المطور)
+# الكود الكامل والنهائي (النسخة الشاملة + قسم التوصيات والنبض)
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -20,6 +20,7 @@ full_code = """
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
         .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
+        /* شريط الأخبار */
         .marquee-wrapper { width: 100%; position: fixed; top: 0; left: 0; background: rgba(8, 51, 68, 0.95); border-bottom: 1px solid #22d3ee; z-index: 9999; padding: 8px 0; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 13px; font-weight: bold; color: #22d3ee; }
@@ -33,6 +34,10 @@ full_code = """
 
         .main-container { padding: 80px 20px 50px 20px; display: flex; flex-direction: column; items: center; }
         
+        /* مؤشر نبض السوق */
+        .market-pulse-bar { height: 6px; width: 100%; background: #1e293b; border-radius: 10px; margin: 10px 0; overflow: hidden; }
+        .pulse-fill { height: 100%; width: 75%; background: linear-gradient(90deg, #22d3ee, #4ade80); }
+
         .calc-wrapper { width: 100%; max-width: 448px; margin-top: 10px; }
         .calc-box { background: #111827; border: 1px solid #374151; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; margin-bottom: 10px; }
         .calc-box input { background: transparent !important; border: none !important; padding: 12px 5px !important; width: 100% !important; color: white !important; font-family: sans-serif !important; direction: ltr !important; text-align: center !important; outline: none !important; font-weight: bold; font-size: 1.1rem; }
@@ -42,7 +47,7 @@ full_code = """
 <body>
     <div class="marquee-wrapper">
         <div class="animate-marquee">
-            📢 عاجل: Toro Libya يطلق نظام التحليل البياني المتقدم .. 🛢️ برنت $78.40 .. 💍 ذهب عيار 18 كسر بـ 415.5 دينار .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 تورو ليبيا: وجهتك الاقتصادية الأولى ..
+            📢 عاجل: Toro Libya يطلق قسم التوصيات الذكية .. 🛢️ برنت $78.40 .. 💍 ذهب عيار 18 كسر بـ 415.5 دينار .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 تورو ليبيا: وجهتك الاقتصادية الأولى ..
         </div>
     </div>
 
@@ -73,11 +78,21 @@ full_code = """
         </div>
 
         <div class="w-full max-w-md">
-            <div class="glass p-5 mb-8">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="section-title mb-0">📊 تحليل السوق المباشر</h2>
-                    <span class="text-[10px] bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded">24H Live</span>
+            <div class="glass p-5 border-l-4 border-cyan-500">
+                <h2 class="section-title">🌟 نبض السوق والتوصيات</h2>
+                <div class="flex justify-between items-center text-xs mb-1">
+                    <span>حالة الاستقرار</span>
+                    <span class="text-cyan-400">75% مستقر</span>
                 </div>
+                <div class="market-pulse-bar">
+                    <div class="pulse-fill"></div>
+                </div>
+                <p class="text-[11px] text-gray-400 mt-2 italic">⚠️ نصيحة اليوم: استقرار نسبي في سعر الصرف، الوقت ملائم لشراء الذهب كادخار طويل الأمد.</p>
+                <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3 border border-green-600/30 hover:bg-green-600/40 transition">💬 استشارة عبر الواتساب</a>
+            </div>
+
+            <div class="glass p-5 mb-8">
+                <h2 class="section-title">📊 تحليل السوق المباشر</h2>
                 <canvas id="cryptoStyleChart" width="400" height="220"></canvas>
             </div>
 
@@ -141,12 +156,7 @@ full_code = """
     </div>
 
     <script>
-        // برمجة تشارت الكريبتو الاحترافي
         const ctx = document.getElementById('cryptoStyleChart').getContext('2d');
-        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(74, 222, 128, 0.3)');
-        gradient.addColorStop(1, 'rgba(74, 222, 128, 0)');
-
         new Chart(ctx, {
             type: 'line',
             data: {
@@ -156,12 +166,9 @@ full_code = """
                     data: [8.62, 8.65, 8.63, 8.67, 8.65, 8.68, 8.65],
                     borderColor: '#4ade80',
                     borderWidth: 2,
-                    fill: true,
-                    backgroundColor: gradient,
-                    tension: 0.1, // لجعله يبدو حاداً قليلاً مثل منصات التداول
+                    fill: false,
+                    tension: 0.1,
                     pointRadius: 2,
-                    pointHoverRadius: 6,
-                    pointHitRadius: 10,
                     pointBackgroundColor: '#4ade80',
                 }]
             },
@@ -171,12 +178,10 @@ full_code = """
                 scales: {
                     y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 10 } } },
                     x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } }
-                },
-                interaction: { intersect: false, mode: 'index' }
+                }
             }
         });
 
-        // برمجة الحاسبة
         const rateUsd = 8.65, rateEur = 9.12;
         function toEn(s) { return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, ''); }
         function runCalc(id) {
@@ -186,11 +191,10 @@ full_code = """
             if(id === 'lyd'){ u.value = val > 0 ? (val / rateUsd).toFixed(2) : ""; e.value = val > 0 ? (val / rateEur).toFixed(2) : ""; }
             else if(id === 'usd'){ l.value = val > 0 ? (val * rateUsd).toFixed(2) : ""; e.value = val > 0 ? ((val * rateUsd) / rateEur).toFixed(2) : ""; }
             else if(id === 'eur'){ l.value = val > 0 ? (val * rateEur).toFixed(2) : ""; u.value = val > 0 ? ((val * rateEur) / rateUsd).toFixed(2) : ""; }
-            if(val === 0) { if(id==='lyd'){u.value=e.value=""} if(id==='usd'){l.value=e.value=""} if(id==='eur'){l.value=u.value=""} }
         }
     </script>
 </body>
 </html>
 """
 
-st.components.v1.html(full_code, height=3000, scrolling=True)
+st.components.v1.html(full_code, height=3300, scrolling=True)
