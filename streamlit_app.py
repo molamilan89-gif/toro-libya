@@ -3,12 +3,15 @@ import streamlit as st
 # إعدادات الصفحة الاحترافية - TORO LIBYA
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل والنهائي الشامل لجميع الأقسام والميزات
+# إضافة ميزة التحديث التلقائي للصفحة كل 60 ثانية لضمان تحديث الأسعار أمام المستخدم
+# st.empty() تستخدم لتحديث الأجزاء المتغيرة فقط مستقبلاً
+
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="60"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -16,7 +19,6 @@ full_code = """
     <style>
         body { font-family: 'Tajawal', sans-serif; background: #0b1120; color: white; margin: 0; padding: 0; overflow-x: hidden; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; transition: 0.3s ease; }
-        .glass:hover { transform: translateY(-3px); border-color: rgba(34, 211, 238, 0.4); }
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
         .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
@@ -28,18 +30,11 @@ full_code = """
         .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
 
-        .quick-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 10px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .trend-up { color: #4ade80; font-size: 0.7rem; }
-
         .main-container { padding: 80px 20px 50px 20px; display: flex; flex-direction: column; items: center; }
-        
         .market-pulse-bar { height: 6px; width: 100%; background: #1e293b; border-radius: 10px; margin: 10px 0; overflow: hidden; }
         .pulse-fill { height: 100%; width: 75%; background: linear-gradient(90deg, #22d3ee, #4ade80); }
-
-        .calc-wrapper { width: 100%; max-width: 448px; margin-top: 10px; }
         .calc-box { background: #111827; border: 1px solid #374151; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; margin-bottom: 10px; }
-        .calc-box input { background: transparent !important; border: none !important; padding: 12px 5px !important; width: 100% !important; color: white !important; font-family: sans-serif !important; direction: ltr !important; text-align: center !important; outline: none !important; font-weight: bold; font-size: 1.1rem; }
-        .symbol { color: #22d3ee; font-weight: bold; font-size: 1.1rem; min-width: 35px; text-align: center; }
+        .calc-box input { background: transparent !important; border: none !important; padding: 12px 5px !important; width: 100% !important; color: white !important; direction: ltr !important; text-align: center !important; outline: none !important; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -50,45 +45,25 @@ full_code = """
     </div>
 
     <div class="main-container">
-        <div class="live-indicator"><span class="dot"></span> مباشر - تحديث تلقائي</div>
+        <div class="live-indicator"><span class="dot"></span> مباشر - يحدث الآن</div>
 
         <div class="text-center mb-6">
             <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
             <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
         </div>
 
-        <div class="grid grid-cols-3 gap-3 w-full max-w-md mb-8">
-            <div class="quick-card">
-                <p class="text-[10px] text-gray-400">USD/LYD</p>
-                <p class="text-sm font-bold">8.65</p>
-                <p class="trend-up">▲ 0.02%</p>
+        <div class="w-full max-w-md glass p-5 border-l-4 border-cyan-500">
+            <h2 class="section-title">🌟 نبض السوق والتوصيات</h2>
+            <div class="flex justify-between items-center text-xs mb-1">
+                <span>حالة الاستقرار</span>
+                <span class="text-cyan-400">75% مستقر</span>
             </div>
-            <div class="quick-card">
-                <p class="text-[10px] text-gray-400">GOLD 18</p>
-                <p class="text-sm font-bold">415.5</p>
-                <p class="trend-up">▲ 1.10%</p>
-            </div>
-            <div class="quick-card">
-                <p class="text-[10px] text-gray-400">BTC/USD</p>
-                <p class="text-sm font-bold">96.4K</p>
-                <p class="trend-up">▲ 0.45%</p>
-            </div>
+            <div class="market-pulse-bar"><div class="pulse-fill"></div></div>
+            <p class="text-[11px] text-gray-400 mt-2 italic">⚠️ نصيحة اليوم: استقرار نسبي في سعر الصرف، الوقت ملائم لشراء الذهب كادخار طويل الأمد.</p>
+            <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3 border border-green-600/30 hover:bg-green-600/40 transition">💬 استشارة مباشرة (واتساب)</a>
         </div>
 
-        <div class="w-full max-w-md">
-            <div class="glass p-5 border-l-4 border-cyan-500">
-                <h2 class="section-title">🌟 نبض السوق والتوصيات</h2>
-                <div class="flex justify-between items-center text-xs mb-1">
-                    <span>حالة الاستقرار</span>
-                    <span class="text-cyan-400">75% مستقر</span>
-                </div>
-                <div class="market-pulse-bar">
-                    <div class="pulse-fill"></div>
-                </div>
-                <p class="text-[11px] text-gray-400 mt-2 italic">⚠️ نصيحة اليوم: استقرار نسبي في سعر الصرف، الوقت ملائم لشراء الذهب كادخار طويل الأمد.</p>
-                <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3 border border-green-600/30 hover:bg-green-600/40 transition">💬 استشارة مباشرة (واتساب)</a>
-            </div>
-
+        <div class="w-full max-w-md mt-6">
             <div class="glass p-5 mb-8">
                 <h2 class="section-title">📊 تحليل السوق المباشر</h2>
                 <canvas id="cryptoStyleChart" width="400" height="220"></canvas>
@@ -140,55 +115,47 @@ full_code = """
                 <div class="price-item"><span>🥛 حليب (علبة)</span><span class="font-bold">4.50</span></div>
             </div>
 
-            <div class="calc-wrapper glass p-6 border-2 border-cyan-500/40">
+            <div class="glass p-6 border-2 border-cyan-500/40">
                 <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
-                <div class="calc-box"><input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="0.00"><span class="symbol">LYD</span></div>
+                <div class="calc-box"><input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="0.00"><span class="text-cyan-400 font-bold">LYD</span></div>
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="calc-box"><span class="symbol">$</span><input type="text" id="usd" oninput="runCalc('usd')" placeholder="0.00"></div>
-                    <div class="calc-box"><span class="symbol">€</span><input type="text" id="eur" oninput="runCalc('eur')" placeholder="0.00"></div>
+                    <div class="calc-box"><span class="text-cyan-400 font-bold">$</span><input type="text" id="usd" oninput="runCalc('usd')" placeholder="0.00"></div>
+                    <div class="calc-box"><span class="text-cyan-400 font-bold">€</span><input type="text" id="eur" oninput="runCalc('eur')" placeholder="0.00"></div>
                 </div>
             </div>
         </div>
         
-        <p class="text-gray-600 text-[10px] mt-10">Toro Ly Pro © 2026</p>
+        <p class="text-gray-600 text-[10px] mt-10 text-center">Toro Ly Pro © 2026 | تحديث تلقائي كل دقيقة</p>
     </div>
 
     <script>
+        // تشارت الكريبتو
         const ctx = document.getElementById('cryptoStyleChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ['10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
                 datasets: [{
-                    label: 'السعر المباشر',
+                    label: 'السعر',
                     data: [8.62, 8.65, 8.63, 8.67, 8.65, 8.68, 8.65],
                     borderColor: '#4ade80',
                     borderWidth: 2,
                     fill: false,
                     tension: 0.1,
-                    pointRadius: 2,
-                    pointBackgroundColor: '#4ade80',
+                    pointRadius: 2
                 }]
             },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b', font: { size: 10 } } },
-                    x: { grid: { display: false }, ticks: { color: '#64748b', font: { size: 10 } } }
-                }
-            }
+            options: { responsive: true, plugins: { legend: { display: false } } }
         });
 
+        // الحاسبة
         const rateUsd = 8.65, rateEur = 9.12;
-        function toEn(s) { return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, ''); }
         function runCalc(id) {
-            const el = document.getElementById(id); el.value = toEn(el.value);
-            let val = parseFloat(el.value) || 0;
             const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
-            if(id === 'lyd'){ u.value = val > 0 ? (val / rateUsd).toFixed(2) : ""; e.value = val > 0 ? (val / rateEur).toFixed(2) : ""; }
-            else if(id === 'usd'){ l.value = val > 0 ? (val * rateUsd).toFixed(2) : ""; e.value = val > 0 ? ((val * rateUsd) / rateEur).toFixed(2) : ""; }
-            else if(id === 'eur'){ l.value = val > 0 ? (val * rateEur).toFixed(2) : ""; u.value = val > 0 ? ((val * rateEur) / rateUsd).toFixed(2) : ""; }
+            let val = parseFloat(document.getElementById(id).value) || 0;
+            if(id === 'lyd'){ u.value = (val / rateUsd).toFixed(2); e.value = (val / rateEur).toFixed(2); }
+            else if(id === 'usd'){ l.value = (val * rateUsd).toFixed(2); e.value = ((val * rateUsd) / rateEur).toFixed(2); }
+            else if(id === 'eur'){ l.value = (val * rateEur).toFixed(2); u.value = ((val * rateEur) / rateUsd).toFixed(2); }
         }
     </script>
 </body>
