@@ -137,5 +137,24 @@ full_code = """
         function calcFromUsd() {
             const usd = document.getElementById('inp-usd').value;
             document.getElementById('inp-lyd').value = (usd * rateUsd).toFixed(2);
-            document.getElementById('inp-eur').value = ((usd * rateUsd)
-            
+            document.getElementById('inp-eur').value = ((usd * rateUsd) / rateEur).toFixed(2);
+        }
+
+        function calcFromEur() {
+            const eur = document.getElementById('inp-eur').value;
+            document.getElementById('inp-lyd').value = (eur * rateEur).toFixed(2);
+            document.getElementById('inp-usd').value = ((eur * rateEur) / rateUsd).toFixed(2);
+        }
+
+        // تحديث محاكي للأسعار
+        setInterval(() => {
+            let val = (8.60 + Math.random() * 0.1).toFixed(2);
+            document.getElementById('p-usd').innerText = val;
+            document.getElementById('q-usd').innerText = val;
+        }, 10000);
+    </script>
+</body>
+</html>
+"""
+
+st.components.v1.html(full_code, height=3500, scrolling=True)
