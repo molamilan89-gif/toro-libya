@@ -1,9 +1,9 @@
 import streamlit as st
 
-# إعدادات الصفحة الأساسية لتظهر بشكل احترافي
+# إعدادات الصفحة الأساسية
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل (HTML + CSS + JavaScript) مدمج في بايثون
+# الكود الكامل مع تعديل لغة أرقام الحاسبة
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -21,6 +21,10 @@ full_code = """
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
         .main-container { padding: 20px; display: flex; flex-direction: column; items: center; padding-bottom: 300px; }
+        
+        /* ضمان ظهور الأرقام بالصيغة الإنجليزية في الحاسبة */
+        input { font-family: sans-serif !important; direction: ltr !important; }
+        input::placeholder { font-family: 'Tajawal', sans-serif; direction: rtl !important; }
     </style>
 </head>
 <body>
@@ -90,9 +94,18 @@ full_code = """
         const rateUsd = 8.65, rateEur = 9.12;
         function convert(s) {
             const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
-            if(s=='lyd'){ u.value=(l.value/rateUsd).toFixed(2); e.value=(l.value/rateEur).toFixed(2); }
-            else if(s=='usd'){ l.value=(u.value*rateUsd).toFixed(2); e.value=((u.value*rateUsd)/rateEur).toFixed(2); }
-            else if(s=='eur'){ l.value=(e.value*rateEur).toFixed(2); u.value=((e.value*rateEur)/rateUsd).toFixed(2); }
+            if(s=='lyd'){ 
+                u.value = (l.value / rateUsd).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
+                e.value = (l.value / rateEur).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
+            }
+            else if(s=='usd'){ 
+                l.value = (u.value * rateUsd).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
+                e.value = ((u.value * rateUsd) / rateEur).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
+            }
+            else if(s=='eur'){ 
+                l.value = (e.value * rateEur).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
+                u.value = ((e.value * rateEur) / rateUsd).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false}); 
+            }
         }
     </script>
 </body>
