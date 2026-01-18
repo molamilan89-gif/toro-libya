@@ -1,89 +1,114 @@
 import streamlit as st
 
-# 1. إعدادات الصفحة الأساسية
+# إعدادات الصفحة
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# 2. تنسيق الألوان والتصميم (CSS)
-st.markdown("""
+# هذا هو الكود الذي يعيد لك مشروعك القديم بالكامل مع الحاسبة المتطورة
+full_code = """
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
-    
-    html, body, [class*="css"] { font-family: 'Tajawal', sans-serif; direction: rtl; }
-    .stApp { background: #0b1120; color: white; }
-    
-    /* شريط الأخبار المباشر */
-    .ticker-wrap {
-        width: 100%; background: rgba(8, 51, 68, 0.9); border-bottom: 1px solid #22d3ee;
-        padding: 10px 0; position: fixed; top: 0; left: 0; z-index: 999;
-    }
-    .ticker { display: inline-block; white-space: nowrap; animation: marquee 30s linear infinite; color: #22d3ee; font-weight: bold; }
-    @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-    .glass-card {
-        background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
-        padding: 20px; margin-bottom: 20px;
-    }
-    .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
-    .price-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-    .price-val { font-weight: bold; color: #22d3ee; }
-    
-    /* تعديل خانات الإدخال لتظهر الأرقام إنجليزية */
-    input { font-family: sans-serif !important; text-align: center !important; font-size: 1.2rem !important; }
+        body { font-family: 'Tajawal', sans-serif; background: #0b1120; color: white; margin: 0; padding: 0; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; }
+        .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
+        .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
+        .main-container { padding: 20px; display: flex; flex-direction: column; items: center; padding-bottom: 350px; }
+        
+        /* إجبار الأرقام على الصيغة الإنجليزية */
+        input { font-family: sans-serif !important; direction: ltr !important; background: #111827 !important; color: white !important; }
+        input::placeholder { font-family: 'Tajawal', sans-serif; direction: rtl !important; }
     </style>
-    
-    <div class="ticker-wrap">
-        <div class="ticker">
+</head>
+<body>
+    <div class="w-full fixed top-0 left-0 bg-cyan-950/90 py-2 z-[100] border-b border-cyan-500/30">
+        <div class="animate-marquee text-cyan-400 text-xs font-bold">
             📢 عاجل: Toro Libya يطلق التحديث الشامل لأسعار الذهب والعملات .. 🛢️ خام برنت مستقر عند 78.40$ .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 منصة تورو ليبيا: المؤشر الاقتصادي الأول في البلاد ..
         </div>
     </div>
-    """, unsafe_allow_html=True)
 
-# 3. الهيدر واللوجو
-st.markdown("<br><br>", unsafe_allow_html=True)
-st.markdown("<h1 style='text-align: center; font-size: 3.5rem; font-weight: 900; margin-bottom:0;'>TORO <span style='color: #22d3ee;'>LY</span></h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 0.8rem; letter-spacing: 2px;'>المؤشر الاقتصادي الليبي المتكامل</p>", unsafe_allow_html=True)
-
-# 4. عرض الأقسام بجمالية الـ Glassmorphism
-def display_section(title, icon, data):
-    st.markdown(f"""
-    <div class="glass-card">
-        <h2 class="section-title">{icon} {title}</h2>
-    """, unsafe_allow_html=True)
-    for label, val in data.items():
-        st.markdown(f"""
-        <div class="price-item">
-            <span>{label}</span>
-            <span class="price-val">{val}</span>
+    <div class="main-container">
+        <div class="text-center mt-12 mb-8">
+            <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
+            <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
         </div>
-        """, unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
 
-# توزيع الأقسام
-display_section("العملات والذهب", "💵", {"🇺🇸 دولار موازي": "8.65", "🇪🇺 يورو موازي": "9.12", "✨ ذهب كسر (18)": "415.5"})
-display_section("العملات الرقمية", "🪙", {"₿ Bitcoin": "$96,430", "💠 Solana": "$195.20"})
-display_section("الطاقة ومواد البناء", "🏗️", {"🛢️ خام برنت": "$78.40", "🧱 إسمنت": "45.00", "⛓️ حديد": "4100"})
-display_section("السلع الأساسية", "🛒", {"🌻 زيت": "7.50", "🍚 أرز": "5.00"})
+        <div class="w-full max-w-md">
+            <div class="glass p-5">
+                <h2 class="section-title">💵 العملات والذهب</h2>
+                <div class="price-item"><span>🇺🇸 دولار موازي</span><span class="font-bold text-cyan-400">8.65</span></div>
+                <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="font-bold">9.12</span></div>
+                <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="font-bold">10.85</span></div>
+                <div class="price-item"><span>✨ ذهب كسر (18)</span><span class="font-bold text-yellow-500">415.5</span></div>
+                <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="font-bold text-yellow-600">485.0</span></div>
+            </div>
 
-# 5. الحاسبة الذكية (بايثون 100% - بدون أخطاء)
-st.markdown("<div class='glass-card' style='border: 2px solid #22d3ee;'>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center; color: #22d3ee; font-size: 0.9rem;'>🔄 محول العملات الذكي</h3>", unsafe_allow_html=True)
+            <div class="glass p-5">
+                <h2 class="section-title">🪙 العملات الرقمية</h2>
+                <div class="price-item"><span>₿ Bitcoin</span><span class="text-green-400 font-bold">$96,430</span></div>
+                <div class="price-item"><span>💠 Solana (SOL)</span><span class="text-green-400 font-bold">$195.20</span></div>
+            </div>
 
-rate_usd = 8.65
-rate_eur = 9.12
+            <div class="glass p-5">
+                <h2 class="section-title">⛽ الطاقة والنفط</h2>
+                <div class="price-item"><span>🛢️ خام برنت</span><span class="font-bold text-green-400">$78.40</span></div>
+                <div class="price-item"><span>🔥 غاز الطهي</span><span class="font-bold">5.00 LYD</span></div>
+            </div>
 
-# استخدام أعمدة الحاسبة
-col_lyd = st.number_input("المبلغ بالدينار الليبي:", min_value=0.0, step=1.0, key="lyd_input", format="%.2f")
+            <div class="glass p-5">
+                <h2 class="section-title">🏗️ مواد البناء</h2>
+                <div class="price-item"><span>🧱 إسمنت (قنطار)</span><span class="font-bold">45.00</span></div>
+                <div class="price-item"><span>⛓️ حديد (الطن)</span><span class="font-bold">4100</span></div>
+            </div>
 
-c1, c2 = st.columns(2)
-with c1:
-    res_usd = col_lyd / rate_usd if col_lyd > 0 else 0.0
-    st.metric("يعادل بالدولار $", f"{res_usd:,.2f}")
-with c2:
-    res_eur = col_lyd / rate_eur if col_lyd > 0 else 0.0
-    st.metric("يعادل باليورو €", f"{res_eur:,.2f}")
+            <div class="glass p-5">
+                <h2 class="section-title">🛒 السلع الأساسية</h2>
+                <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
+                <div class="price-item"><span>🍚 أرز (كيلو)</span><span class="font-bold">5.00</span></div>
+            </div>
+        </div>
 
-st.markdown("</div>", unsafe_allow_html=True)
+        <div class="w-full max-w-md glass p-6 fixed bottom-4 border-2 border-cyan-500/40 z-[100] left-1/2 -translate-x-1/2">
+            <h3 class="text-cyan-400 text-xs font-bold mb-4 text-center">🔄 محول العملات الذكي</h3>
+            <input type="text" id="lyd" oninput="runCalc('lyd')" placeholder="دينار ليبي" class="w-full border border-gray-700 rounded-lg p-3 mb-3 text-lg font-bold text-center outline-none">
+            <div class="grid grid-cols-2 gap-3">
+                <input type="text" id="usd" oninput="runCalc('usd')" placeholder="دولار $" class="w-full border border-gray-700 rounded-lg p-2 text-md font-bold text-cyan-400 text-center outline-none">
+                <input type="text" id="eur" oninput="runCalc('eur')" placeholder="يورو €" class="w-full border border-gray-700 rounded-lg p-2 text-md font-bold text-center outline-none">
+            </div>
+        </div>
+    </div>
 
-# الفوتر
-st.markdown("<p style='text-align: center; color: #444; margin-top: 50px;'>Toro Ly Pro © 2026</p>", unsafe_allow_html=True)
+    <script>
+        const rateUsd = 8.65, rateEur = 9.12;
+        
+        // تحويل الأرقام العربية المكتوبة إلى إنجليزية فوراً
+        function toEn(s) {
+            return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, '');
+        }
+
+        function runCalc(id) {
+            const el = document.getElementById(id);
+            el.value = toEn(el.value); // تحويل المدخل
+            let val = parseFloat(el.value) || 0;
+            const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
+
+            if(id=='lyd'){ u.value=(val/rateUsd).toFixed(2); e.value=(val/rateEur).toFixed(2); }
+            else if(id=='usd'){ l.value=(val*rateUsd).toFixed(2); e.value=((val*rateUsd)/rateEur).toFixed(2); }
+            else if(id=='eur'){ l.value=(val*rateEur).toFixed(2); u.value=((val*rateEur)/rateUsd).toFixed(2); }
+            
+            // تنظيف الخانات إذا كانت فارغة
+            if(val === 0) { l.value = u.value = e.value = ""; }
+        }
+    </script>
+</body>
+</html>
+"""
+
+# عرض المشروع بالكامل بدون أخطاء
+st.components.v1.html(full_code, height=1800, scrolling=True)
