@@ -1,9 +1,9 @@
 import streamlit as st
 
 # إعدادات الصفحة الاحترافية - TORO LIBYA
-st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
+st.set_page_config(page_title="Toro Ly - The Legend", page_icon="🐂", layout="centered")
 
-# الكود الشامل بتصميم موحد وفخم (الأصفر للذهب فقط)
+# الكود البرمجي بتصميم عالمي (نيون وفخامة)
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -13,138 +13,126 @@ full_code = """
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; background: #0b1120; color: white; margin: 0; padding: 0; overflow-x: hidden; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; }
+        :root { --neon-cyan: #22d3ee; --neon-gold: #facc15; --bg-dark: #0b1120; }
+        body { font-family: 'Tajawal', sans-serif; background: var(--bg-dark); color: white; margin: 0; padding: 0; }
         
-        /* توحيد العناوين باللون السماوي */
-        .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; display: flex; align-items: center; gap: 8px; }
+        /* تصميم الهيدر اللوجو العالمي */
+        .header-container { padding: 40px 20px; text-align: right; display: flex; align-items: center; gap: 20px; }
+        .logo-circle { width: 80px; height: 80px; background: rgba(34, 211, 238, 0.1); border: 2px solid var(--neon-cyan); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
+        .logo-circle svg { width: 45px; height: 45px; fill: var(--neon-cyan); }
+        .brand-name { font-size: 45px; font-weight: 900; letter-spacing: -2px; line-height: 1; }
+        .brand-ly { background: var(--neon-cyan); color: var(--bg-dark); padding: 0 10px; border-radius: 8px; margin-right: 5px; }
         
-        /* الذهب فقط بالأصفر */
-        .section-title.gold-title { border-right-color: #facc15; color: #facc15; }
-        .gold-text { color: #facc15 !important; }
-
-        .price-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        /* البطاقات العلوية - نمط زجاجي */
+        .top-grid { display: grid; grid-cols: 3; gap: 15px; margin-bottom: 30px; }
+        .glass-card { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 20px; position: relative; overflow: hidden; }
+        .glass-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-cyan); }
+        .glass-card.gold::before { background: var(--neon-gold); }
         
-        .main-logo-container { position: relative; width: 150px; height: 150px; margin: 20px auto; }
-        .logo-box { width: 100%; height: 100%; background: radial-gradient(circle, rgba(34, 211, 238, 0.1) 0%, transparent 70%); border: 2px solid #22d3ee; border-radius: 40px; display: flex; align-items: center; justify-content: center; }
-        .logo-inner { width: 80px; height: 80px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .logo-inner svg { width: 50px; height: 50px; color: #0b1120; }
-
-        .marquee-wrapper { width: 100%; position: fixed; top: 0; left: 0; background: rgba(8, 51, 68, 0.95); border-bottom: 1px solid #22d3ee; z-index: 9999; padding: 8px 0; }
-        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 13px; font-weight: bold; color: #22d3ee; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-        .status-badge { padding: 4px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; background: rgba(34, 211, 238, 0.1); color: #22d3ee; border: 1px solid rgba(34, 211, 238, 0.2); }
-        .price-val { font-family: 'Verdana', sans-serif; font-weight: bold; }
+        /* الأقسام والجداول */
+        .section-box { background: rgba(30, 41, 59, 0.4); border-radius: 24px; padding: 25px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.03); }
+        .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 20px; font-weight: 800; color: var(--neon-cyan); }
+        .section-header.gold { color: var(--neon-gold); }
         
-        .top-card { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 15px; text-align: center; }
-        .top-card.gold-border { border-bottom: 2px solid #facc15; }
-        .top-card.cyan-border { border-bottom: 2px solid #22d3ee; }
+        .row-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 10px; background: rgba(255,255,255,0.02); border-radius: 12px; margin-bottom: 8px; transition: 0.3s; }
+        .row-item:hover { background: rgba(255,255,255,0.05); transform: scale(1.01); }
+        
+        .price-text { font-family: 'Verdana', sans-serif; font-weight: 700; font-size: 18px; }
+        .gold-text { color: var(--neon-gold); }
 
-        .calc-box { background: #111827; border: 1px solid #374151; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; margin-bottom: 10px; }
-        .calc-box input { background: transparent !important; border: none !important; padding: 15px 5px !important; width: 100% !important; color: white !important; text-align: center !important; outline: none !important; font-size: 20px; font-weight: bold; }
+        /* حاسبة احترافية */
+        .calc-input-group { background: #111827; border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 10px 20px; margin-bottom: 12px; }
+        .calc-input-group input { background: transparent; border: none; width: 100%; color: white; font-size: 22px; font-weight: 700; outline: none; text-align: center; }
+        
+        .marquee-top { position: fixed; top: 0; width: 100%; background: #083344; padding: 6px 0; z-index: 100; font-size: 12px; font-weight: bold; border-bottom: 1px solid var(--neon-cyan); }
     </style>
 </head>
 <body>
-    <div class="marquee-wrapper">
-        <div class="animate-marquee">
-             📢 تورو ليبيا: الدولار 8.65 .. الذهب كسر 415.5 .. الإسمنت 45 .. سولانا 242.15 .. 🐂
-        </div>
+    <div class="marquee-top">
+        <marquee>📢 Toro Ly: الأسعار محدثة لحظياً من قلب سوق المشير .. الدولار مستقر عند 8.65 .. الذهب عيار 18 كسر بـ 415.5 ..</marquee>
     </div>
 
-    <div class="main-container pt-24 px-5 max-w-md mx-auto">
-        <div class="text-center mb-6">
-            <div class="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 px-4 py-1 rounded-full text-[11px] font-bold border border-cyan-500/20 mb-4">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span> نظام Toro Ly المباشر
+    <div class="max-w-xl mx-auto px-4 pt-16">
+        <header class="header-container">
+            <div class="logo-circle">
+                <svg viewBox="0 0 24 24"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M15.5,14.5c-0.83,0-1.5-0.67-1.5-1.5s0.67-1.5,1.5-1.5 s1.5,0.67,1.5,1.5S16.33,14.5,15.5,14.5z M8.5,14.5c-0.83,0-1.5-0.67-1.5-1.5s0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5S9.33,14.5,8.5,14.5z M12,18c-2.33,0-4.31-1.46-5.11-3.5h10.22C16.31,16.54,14.33,18,12,18z"/></svg>
             </div>
-
-            <div class="main-logo-container">
-                <div class="logo-box">
-                    <div class="logo-inner">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                    </div>
-                </div>
+            <div>
+                <h1 class="brand-name">TORO<span class="brand-ly">Ly</span></h1>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-1">The Legend of Libian Market</p>
             </div>
-
-            <h1 class="text-5xl font-black tracking-tighter">TORO <span class="text-cyan-400">LY</span></h1>
-            <p class="text-gray-500 text-[10px] mt-2 tracking-[0.2em] uppercase font-bold">The Legend of Libyan Market</p>
-        </div>
+        </header>
 
         <div class="grid grid-cols-3 gap-3 mb-8">
-            <div class="top-card cyan-border">
-                <p class="text-[9px] text-gray-400 font-bold uppercase">BTC</p>
-                <p class="text-sm font-bold price-val">96.4K</p>
+            <div class="glass-card">
+                <p class="text-[10px] text-cyan-400 font-black">USD</p>
+                <p class="price-text mt-1" id="top-usd">8.65</p>
             </div>
-            <div class="top-card gold-border">
-                <p class="text-[9px] text-gray-400 font-bold uppercase gold-text">GOLD 18</p>
-                <p class="text-sm font-bold price-val gold-text">415.5</p>
+            <div class="glass-card gold">
+                <p class="text-[10px] text-yellow-500 font-black">GOLD 18</p>
+                <p class="price-text gold-text mt-1">415.5</p>
             </div>
-            <div class="top-card cyan-border">
-                <p class="text-[9px] text-gray-400 font-bold uppercase">USD</p>
-                <p id="top-usd" class="text-sm font-bold price-val">8.65</p>
-            </div>
-        </div>
-
-        <div class="glass p-5 border-l-4 border-cyan-500">
-            <h2 class="section-title">⚡ الخدمات والطاقة</h2>
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-xs font-bold">طرح الأحمال (الغربية)</span>
-                <span class="status-badge">ساعة واحدة</span>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-xs font-bold">حالة محطات الوقود</span>
-                <span class="status-badge">متوفر - ازدحام خفيف</span>
+            <div class="glass-card">
+                <p class="text-[10px] text-cyan-400 font-black">BTC</p>
+                <p class="price-text mt-1">96.4K</p>
             </div>
         </div>
 
-        <div class="glass p-5 mt-6 border-l-4 border-cyan-500">
-            <h2 class="section-title">💵 أسعار العملات الموازية</h2>
-            <div class="price-item"><span>🇺🇸 دولار موازي</span><span id="val-usd" class="price-val text-cyan-400 text-lg">8.65</span></div>
-            <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="price-val text-lg">9.12</span></div>
-            <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span class="price-val text-lg">10.85</span></div>
-            <div class="price-item"><span>🇹🇳 دينار تونسي</span><span class="price-val text-lg">2.65</span></div>
-            <div class="price-item"><span>🇪🇬 جنيه مصري</span><span class="price-val text-lg">0.17</span></div>
+        <div class="section-box">
+            <div class="section-header">⚡ الخدمات والطاقة</div>
+            <div class="row-item"><span>طرح الأحمال (طرابلس)</span><span class="text-cyan-400 font-bold">1 - 2 ساعة</span></div>
+            <div class="row-item"><span>محطات الوقود</span><span class="text-green-400 font-bold">متوفرة</span></div>
         </div>
 
-        <div class="glass p-5 mt-6 border-l-4 border-yellow-500">
-            <h2 class="section-title gold-title">✨ الذهب والمعادن</h2>
-            <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="price-val gold-text">485.0</span></div>
-            <div class="price-item"><span>✨ ذهب كسر (18)</span><span class="price-val gold-text">415.5</span></div>
-            <div class="price-item"><span>🥈 فضة (جرام)</span><span class="price-val text-gray-300">5.40</span></div>
-            <div class="price-item"><span>🥉 نحاس (كيلو)</span><span class="price-val text-gray-300">42.0</span></div>
+        <div class="section-box border-r-4 border-cyan-500">
+            <div class="section-header">💵 العملات الموازية</div>
+            <div class="row-item"><span>🇺🇸 دولار موازي</span><span class="price-text text-cyan-400" id="val-usd">8.65</span></div>
+            <div class="row-item"><span>🇪🇺 يورو موازي</span><span class="price-text">9.12</span></div>
+            <div class="row-item"><span>🇬🇧 باوند إسترليني</span><span class="price-text">10.85</span></div>
+            <div class="row-item"><span>🇹🇳 دينار تونسي</span><span class="price-text">2.65</span></div>
+            <div class="row-item"><span>🇪🇬 جنيه مصري</span><span class="price-text text-green-500">0.17</span></div>
         </div>
 
-        <div class="glass p-5 mt-6 border-l-4 border-cyan-500">
-            <h2 class="section-title">🏗️ مواد البناء والسلع</h2>
-            <div class="price-item"><span>🧱 إسمنت (قنطار)</span><span class="price-val">45.00</span></div>
-            <div class="price-item"><span>⛓️ حديد (طن)</span><span class="price-val">4100</span></div>
-            <div class="price-item"><span>🌻 زيت (لتر)</span><span class="price-val">7.50</span></div>
+        <div class="section-box border-r-4 border-yellow-500">
+            <div class="section-header gold">✨ الذهب والمعادن</div>
+            <div class="row-item"><span>💍 ذهب جديد (21)</span><span class="price-text gold-text">485.0</span></div>
+            <div class="row-item"><span>✨ ذهب كسر (18)</span><span class="price-text gold-text">415.5</span></div>
+            <div class="row-item"><span>🥈 فضة (جرام)</span><span class="price-text text-gray-400">5.40</span></div>
+            <div class="row-item"><span>🥉 نحاس (كيلو)</span><span class="price-text text-gray-400">42.0</span></div>
         </div>
 
-        <div class="glass p-5 mt-6 border-l-4 border-cyan-500">
-            <h2 class="section-title">🪙 العملات الرقمية</h2>
-            <div class="price-item"><span>₿ Bitcoin (BTC)</span><span class="price-val">$96,430</span></div>
-            <div class="price-item"><span>Ξ Ethereum (ETH)</span><span class="price-val">$3,345</span></div>
-            <div class="price-item"><span>☀️ Solana (SOL)</span><span class="price-val">$242.15</span></div>
+        <div class="section-box border-r-4 border-cyan-500">
+            <div class="section-header">🏗️ مواد البناء والسلع</div>
+            <div class="row-item"><span>🧱 إسمنت (قنطار)</span><span class="price-text">45.00</span></div>
+            <div class="row-item"><span>⛓️ حديد (طن)</span><span class="price-text">4100</span></div>
+            <div class="row-item"><span>🌻 زيت (لتر)</span><span class="price-text">7.50</span></div>
         </div>
 
-        <div class="glass p-6 border-2 border-cyan-500/30 mt-8 mb-12">
-            <h3 class="text-cyan-400 text-sm font-black mb-6 text-center uppercase">🔄 حاسبة TORO الأسطورية</h3>
-            <div class="calc-box"><input type="number" id="lyd" oninput="runCalc('lyd')" placeholder="0.00"><span class="text-cyan-400 font-bold ml-2">LYD</span></div>
-            <div class="grid grid-cols-2 gap-4 mt-4">
-                <div class="calc-box"><input type="number" id="usd" oninput="runCalc('usd')" placeholder="0.00"><span class="text-cyan-400 font-bold ml-2">USD</span></div>
-                <div class="calc-box"><input type="number" id="eur" oninput="runCalc('eur')" placeholder="0.00"><span class="text-cyan-400 font-bold ml-2">EUR</span></div>
+        <div class="section-box border-r-4 border-cyan-500">
+            <div class="section-header">🪙 العملات الرقمية</div>
+            <div class="row-item"><span>₿ Bitcoin (BTC)</span><span class="price-text text-green-400">$96,430</span></div>
+            <div class="row-item"><span>Ξ Ethereum (ETH)</span><span class="price-text text-blue-400">$3,345</span></div>
+            <div class="row-item"><span>☀️ Solana (SOL)</span><span class="price-text text-purple-400">$242.15</span></div>
+        </div>
+
+        <div class="section-box border-2 border-cyan-500/30">
+            <div class="section-header justify-center mb-6">🔄 حاسبة TORO الذكية</div>
+            <div class="calc-input-group"><input type="number" id="lyd" oninput="runCalc('lyd')" placeholder="0.00"><p class="text-[10px] text-cyan-400 font-bold">دينار ليبي</p></div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="calc-input-group"><input type="number" id="usd" oninput="runCalc('usd')" placeholder="0.00"><p class="text-[10px] text-gray-500 font-bold">دولار</p></div>
+                <div class="calc-input-group"><input type="number" id="eur" oninput="runCalc('eur')" placeholder="0.00"><p class="text-[10px] text-gray-500 font-bold">يورو</p></div>
             </div>
         </div>
 
-        <p class="text-gray-700 text-[10px] pb-10 text-center uppercase tracking-[0.3em] font-bold">TORO LY LEGEND © 2026</p>
+        <footer class="text-center py-10 opacity-30 text-[10px] font-bold tracking-[0.5em]">TORO LY LEGEND © 2026</footer>
     </div>
 
     <script>
+        // محاكاة التحديث اللحظي
         setInterval(() => {
             const p = (8.60 + Math.random() * 0.1).toFixed(2);
-            if(document.getElementById('val-usd')) document.getElementById('val-usd').innerText = p;
-            if(document.getElementById('top-usd')) document.getElementById('top-usd').innerText = p;
+            document.getElementById('val-usd').innerText = p;
+            document.getElementById('top-usd').innerText = p;
         }, 8000);
 
         const rateUsd = 8.65, rateEur = 9.12;
@@ -160,4 +148,4 @@ full_code = """
 </html>
 """
 
-st.components.v1.html(full_code, height=2700, scrolling=True)
+st.components.v1.html(full_code, height=3200, scrolling=True)
