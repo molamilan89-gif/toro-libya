@@ -106,4 +106,24 @@ full_code = """
             </div>
         </div>
         
-        <p class="text-gray-600 text-[10px] mt-10
+        <p class="text-gray-600 text-[10px] mt-10">Toro Ly Pro © 2026</p>
+    </div>
+
+    <script>
+        const rateUsd = 8.65, rateEur = 9.12;
+        function toEn(s) { return s.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, ''); }
+        function runCalc(id) {
+            const el = document.getElementById(id); el.value = toEn(el.value);
+            let val = parseFloat(el.value) || 0;
+            const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
+            if(id === 'lyd'){ u.value = val > 0 ? (val / rateUsd).toFixed(2) : ""; e.value = val > 0 ? (val / rateEur).toFixed(2) : ""; }
+            else if(id === 'usd'){ l.value = val > 0 ? (val * rateUsd).toFixed(2) : ""; e.value = val > 0 ? ((val * rateUsd) / rateEur).toFixed(2) : ""; }
+            else if(id === 'eur'){ l.value = val > 0 ? (val * rateEur).toFixed(2) : ""; u.value = val > 0 ? ((val * rateEur) / rateUsd).toFixed(2) : ""; }
+            if(val === 0) { if(id==='lyd'){u.value=e.value=""} if(id==='usd'){l.value=e.value=""} if(id==='eur'){l.value=u.value=""} }
+        }
+    </script>
+</body>
+</html>
+"""
+
+st.components.v1.html(full_code, height=2400, scrolling=True)
