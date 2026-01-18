@@ -1,9 +1,9 @@
 import streamlit as st
 
-# إعدادات الصفحة الاحترافية
+# إعدادات الصفحة
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود الكامل مع إضافة رموز العملات في الحاسبة
+# الكود الكامل مع معالجة خطأ الحاسبة وتثبيت الأقسام
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -28,55 +28,7 @@ full_code = """
         .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
 
-        .main-container { padding: 60px 20px 350px 20px; display: flex; flex-direction: column; items: center; }
+        .main-container { padding: 80px 20px 350px 20px; display: flex; flex-direction: column; items: center; }
         
-        /* تنسيق الحاسبة والعملات */
-        input { font-family: sans-serif !important; direction: ltr !important; background: #111827 !important; color: white !important; transition: all 0.3s ease; }
-        input:focus { border-color: #22d3ee !important; box-shadow: 0 0 10px rgba(34, 211, 238, 0.2); }
-        .symbol-text { font-size: 0.8rem; color: #64748b; margin-left: 5px; }
-    </style>
-</head>
-<body>
-    <div class="marquee-wrapper">
-        <div class="animate-marquee">
-            📢 عاجل: Toro Libya يطلق التحديث الشامل لأسعار الذهب والعملات .. 🛢️ خام برنت مستقر عند 78.40$ .. 🏗️ أسعار الإسمنت والحديد اليوم في ليبيا .. 🐂 منصة تورو ليبيا: المؤشر الاقتصادي الأول في البلاد ..
-        </div>
-    </div>
-
-    <div class="main-container">
-        <div class="live-indicator"><span class="dot"></span> مباشر - تحديث تلقائي</div>
-
-        <div class="text-center mb-8">
-            <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
-            <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
-        </div>
-
-        <div class="w-full max-w-md">
-            <div class="glass p-5">
-                <h2 class="section-title">💵 العملات والذهب</h2>
-                <div class="price-item"><span>🇺🇸 دولار موازي</span><span class="font-bold text-cyan-400">8.65</span></div>
-                <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="font-bold">9.12</span></div>
-                <div class="price-item"><span>✨ ذهب كسر (18)</span><span class="font-bold text-yellow-500">415.5</span></div>
-                <div class="price-item"><span>💍 ذهب جديد (21)</span><span class="font-bold text-yellow-600">485.0</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">🪙 العملات الرقمية</h2>
-                <div class="price-item"><span>₿ Bitcoin</span><span class="text-green-400 font-bold">$96,430</span></div>
-                <div class="price-item"><span>💠 Solana (SOL)</span><span class="text-green-400 font-bold">$195.20</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">⛽ الطاقة والنفط</h2>
-                <div class="price-item"><span>🛢️ خام برنت</span><span class="font-bold text-green-400">$78.40</span></div>
-                <div class="price-item"><span>🔥 غاز الطهي</span><span class="font-bold">5.00 LYD</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">🏗️ مواد البناء</h2>
-                <div class="price-item"><span>🧱 إسمنت (قنطار)</span><span class="font-bold">45.00</span></div>
-                <div class="price-item"><span>⛓️ حديد (الطن)</span><span class="font-bold">4100</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">🛒
+        /* تنسيق الحاسبة المصلح */
+        .calc-box { background: #111827; border: 1px solid #3741
