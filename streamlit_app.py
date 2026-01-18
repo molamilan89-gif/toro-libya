@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الاحترافية - TORO LIBYA
 st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
 
-# الكود المحدث مع العملة التونسية وتغيير موقع الحاسبة
+# الكود المحدث بالإضافات العالمية
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -14,7 +14,8 @@ full_code = """
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Tajawal', sans-serif; background: #0b1120; color: white; margin: 0; padding: 0; overflow-x: hidden; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; transition: 0.3s ease; }
+        .glass:hover { transform: translateY(-5px); border-color: rgba(34, 211, 238, 0.4); }
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
         .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         
@@ -27,12 +28,15 @@ full_code = """
         .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
 
+        /* بطاقات المؤشرات العالمية السريعة */
+        .quick-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 10px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .trend-up { color: #4ade80; font-size: 0.7rem; }
+
         .main-container { padding: 80px 20px 50px 20px; display: flex; flex-direction: column; items: center; }
         
-        /* تنسيق الحاسبة - موقع جديد تحت الأقسام */
+        /* تنسيق الحاسبة */
         .calc-wrapper { width: 100%; max-width: 448px; margin-top: 10px; }
         .calc-box { background: #111827; border: 1px solid #374151; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; margin-bottom: 10px; transition: 0.3s; }
-        .calc-box:focus-within { border-color: #22d3ee; box-shadow: 0 0 10px rgba(34, 211, 238, 0.2); }
         .calc-box input { background: transparent !important; border: none !important; padding: 12px 5px !important; width: 100% !important; color: white !important; font-family: sans-serif !important; direction: ltr !important; text-align: center !important; outline: none !important; font-weight: bold; font-size: 1.1rem; }
         .symbol { color: #22d3ee; font-weight: bold; font-size: 1.1rem; font-family: sans-serif; min-width: 35px; text-align: center; }
     </style>
@@ -47,9 +51,27 @@ full_code = """
     <div class="main-container">
         <div class="live-indicator"><span class="dot"></span> مباشر - تحديث تلقائي</div>
 
-        <div class="text-center mb-8">
+        <div class="text-center mb-6">
             <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
             <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 w-full max-w-md mb-8">
+            <div class="quick-card">
+                <p class="text-[10px] text-gray-400">USD/LYD</p>
+                <p class="text-sm font-bold">8.65</p>
+                <p class="trend-up">▲ 0.02%</p>
+            </div>
+            <div class="quick-card">
+                <p class="text-[10px] text-gray-400">GOLD 18</p>
+                <p class="text-sm font-bold">415.5</p>
+                <p class="trend-up">▲ 1.10%</p>
+            </div>
+            <div class="quick-card">
+                <p class="text-[10px] text-gray-400">BTC/USD</p>
+                <p class="text-sm font-bold">96.4K</p>
+                <p class="trend-up">▲ 0.45%</p>
+            </div>
         </div>
 
         <div class="w-full max-w-md">
@@ -106,7 +128,8 @@ full_code = """
             </div>
         </div>
         
-        <p class="text-gray-600 text-[10px] mt-10">Toro Ly Pro © 2026</p>
+        <p class="text-gray-600 text-[10px] mt-10">تاريخ التحديث: 18 يناير 2026</p>
+        <p class="text-gray-700 text-[9px]">Toro Ly Pro © 2026</p>
     </div>
 
     <script>
@@ -126,4 +149,4 @@ full_code = """
 </html>
 """
 
-st.components.v1.html(full_code, height=2400, scrolling=True)
+st.components.v1.html(full_code, height=2600, scrolling=True)
