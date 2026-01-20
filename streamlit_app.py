@@ -1,114 +1,91 @@
 import streamlit as st
-import requests
 import base64
+import requests
 
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="Toro Libya", page_icon="🐂", layout="centered")
 
-# 2. وظيفة لجلب الصورة وتحويلها لـ Base64 لضمان ظهورها
-def get_base64_image(url):
+# 2. وظيفة لجلب الصورة وتحويلها لنص (Base64) لضمان الظهور
+def get_image_base64(url):
     try:
-        response = requests.get(url)
-        return base64.b64encode(response.content).decode()
+        res = requests.get(url)
+        return base64.b64encode(res.content).decode()
     except:
-        return ""
+        return None
 
-# رابط صورتك من GitHub
-logo_url = "https://raw.githubusercontent.com/molamilan89-gif/toro-libya/main/1000105722.jpg"
-logo_base64 = get_base64_image(logo_url)
+# رابط الصورة من مستودعك
+img_url = "https://raw.githubusercontent.com/molamilan89-gif/toro-libya/main/1000105722.jpg"
+encoded_img = get_image_base64(img_url)
 
-# 3. الكود البرمجي للموقع
-full_code = f"""
+# 3. تصميم الموقع بالكامل (HTML & CSS)
+html_content = f"""
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body {{ font-family: 'Tajawal', sans-serif; background: #0b1120; color: white; margin: 0; padding: 0; overflow-x: hidden; }}
+        body {{ font-family: 'Tajawal', sans-serif; background-color: #0b1120; color: white; text-align: center; margin: 0; padding: 0; }}
         
-        /* تصميم اللوجو ليكون تماماً مثل الصورة المطلوبة */
-        .header-logo-container {{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding-top: 50px;
-            margin-bottom: 20px;
-        }}
-        .main-logo {{
+        /* إطار اللوجو المضيء */
+        .logo-container {{
+            margin: 40px auto 20px;
             width: 180px;
             height: 180px;
-            object-fit: cover;
-            border-radius: 25px;
-            border: 3px solid #22d3ee;
-            box-shadow: 0px 0px 35px rgba(34, 211, 238, 0.5);
-            margin-bottom: 20px;
+            border-radius: 30px;
+            border: 2px solid #22d3ee;
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: #1e293b;
         }}
+        .logo-container img {{ width: 100%; height: 100%; object-fit: cover; }}
 
-        .glass {{ background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; transition: 0.3s ease; }}
-        .section-title {{ border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }}
+        .brand-name {{ font-size: 38px; font-weight: 900; letter-spacing: 4px; margin: 5px 0; }}
+        .brand-sub {{ color: #64748b; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; }}
         
-        .marquee-wrapper {{ width: 100%; position: fixed; top: 0; left: 0; background: rgba(8, 51, 68, 0.95); border-bottom: 1px solid #22d3ee; z-index: 9999; padding: 8px 0; }}
-        @keyframes marquee {{ 0% {{ transform: translateX(100%); }} 100% {{ transform: translateX(-100%); }} }}
-        .animate-marquee {{ display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 13px; font-weight: bold; color: #22d3ee; }}
+        .price-grid {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 0 15px; }}
+        .card {{ background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 15px; }}
+        .card-val {{ font-size: 22px; font-weight: bold; color: #22d3ee; display: block; }}
+        .card-label {{ font-size: 12px; color: #94a3b8; }}
+
+        .news-bar {{ background: rgba(34, 211, 238, 0.1); border: 1px solid #22d3ee; padding: 8px; border-radius: 10px; margin: 20px 15px; font-size: 13px; }}
         
-        .main-container {{ padding: 20px; display: flex; flex-direction: column; items: center; width: 100%; max-width: 500px; margin: auto; }}
-        .price-item {{ display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }}
+        .pulse-box {{ background: #111827; border: 1px solid #22d3ee; border-radius: 20px; padding: 20px; margin: 20px 15px; text-align: right; }}
     </style>
 </head>
 <body>
-    <div class="marquee-wrapper">
-        <div class="animate-marquee">
-            📢 تورو ليبيا: وجهتك الاقتصادية الأولى والوحيدة في ليبيا .. 🐂 مزامنة فورية مع سوق المشير والبورصات العالمية ..
-        </div>
+
+    <div class="news-bar">
+        <marquee>📢 تورو ليبيا: وجهتك الاقتصادية الأولى والوحيدة في ليبيا .. 🐂 تحديثات فورية من قلب سوق المشير ..</marquee>
     </div>
 
-    <div class="header-logo-container">
-        <img src="data:image/jpeg;base64,{logo_base64}" class="main-logo" alt="Toro Logo">
-        <h1 class="text-4xl font-black tracking-widest uppercase">TORO <span class="text-cyan-400">LY</span></h1>
-        <p class="text-gray-500 text-[11px] mt-1 uppercase tracking-widest text-center">THE LEGEND OF LIBYAN MARKET</p>
+    <div class="logo-container">
+        {f'<img src="data:image/jpeg;base64,{encoded_img}">' if encoded_img else '<p>Loading...</p>'}
     </div>
 
-    <div class="main-container">
-        <div class="grid grid-cols-3 gap-3 w-full mb-8">
-            <div class="bg-slate-800/50 p-4 rounded-2xl border border-white/5 text-center">
-                <p class="text-[10px] text-gray-400">USD</p>
-                <p class="text-lg font-bold text-cyan-400">8.65</p>
-            </div>
-            <div class="bg-slate-800/50 p-4 rounded-2xl border border-white/5 text-center">
-                <p class="text-[10px] text-gray-400">GOLD 18</p>
-                <p class="text-lg font-bold text-yellow-500">415.5</p>
-            </div>
-            <div class="bg-slate-800/50 p-4 rounded-2xl border border-white/5 text-center">
-                <p class="text-[10px] text-gray-400">BTC</p>
-                <p class="text-lg font-bold text-green-400">96.4K</p>
-            </div>
-        </div>
+    <div class="brand-name">TORO <span style="color: #22d3ee;">LY</span></div>
+    <div class="brand-sub">THE LEGEND OF LIBYAN MARKET</div>
 
-        <div class="w-full">
-            <div class="glass p-5 border-l-4 border-cyan-500">
-                <h2 class="section-title">🌟 نبض السوق والتوصيات</h2>
-                <div class="flex justify-between items-center text-xs mb-2">
-                    <span>حالة الاستقرار</span>
-                    <span class="text-cyan-400">75% مستقر</span>
-                </div>
-                <div class="h-2 w-full bg-slate-700 rounded-full overflow-hidden">
-                    <div class="h-full bg-cyan-500 w-[75%]"></div>
-                </div>
-                <p class="text-[11px] text-gray-400 mt-3 italic text-center">⚠️ جاري تحليل أحدث رسائل الواتساب من الغرفة الموثوقة...</p>
-                <button class="w-full bg-green-600/20 text-green-400 py-2 rounded-xl mt-4 border border-green-600/30 font-bold">تواصل مع الإدارة 💬</button>
-            </div>
-        </div>
-        
-        <p class="text-gray-600 text-[10px] mt-10 tracking-widest">TORO LIBYA © 2026</p>
+    <div class="price-grid">
+        <div class="card"><span class="card-label">USD</span><span class="card-val">8.65</span></div>
+        <div class="card"><span class="card-label">GOLD 18</span><span class="card-val">415.5</span></div>
+        <div class="card"><span class="card-label">BTC</span><span class="card-val">96.4K</span></div>
     </div>
+
+    <div class="pulse-box">
+        <h3 style="color: #22d3ee; margin-top: 0;">🌟 نبض السوق والتوصيات</h3>
+        <p style="font-size: 14px; margin-bottom: 5px;">حالة الاستقرار: <span style="color: #22d3ee;">75% مستقر</span></p>
+        <div style="width: 100%; height: 6px; background: #334155; border-radius: 10px;">
+            <div style="width: 75%; height: 100%; background: #22d3ee; border-radius: 10px;"></div>
+        </div>
+        <p style="font-size: 11px; color: #94a3b8; margin-top: 15px;">⚠️ جاري تحليل أحدث رسائل الواتساب الواردة من الغرفة الموثوقة...</p>
+    </div>
+
 </body>
 </html>
 """
 
-st.components.v1.html(full_code, height=1800, scrolling=True)
+st.components.v1.html(html_content, height=1000, scrolling=True)
