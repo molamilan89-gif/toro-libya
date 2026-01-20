@@ -10,7 +10,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. التنسيق الجمالي المتقدم (CSS) لمحاكاة الصورة المطلوبة تماماً
+# 2. التنسيق الجمالي (CSS) لمحاكاة التصميم المطلوب
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
@@ -19,10 +19,9 @@ st.markdown("""
         font-family: 'Tajawal', sans-serif;
         direction: rtl;
         text-align: right;
-        background-color: #0e1621; /* لون الخلفية الداكن المماثل للصورة */
+        background-color: #0e1621;
     }
 
-    /* تنسيق حاوية اللوجو */
     .logo-container {
         display: flex;
         justify-content: center;
@@ -30,12 +29,12 @@ st.markdown("""
         margin-bottom: 10px;
     }
     .logo-img {
-        width: 220px;
+        width: 250px;
         border-radius: 15px;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+        border: 2px solid #00ffff;
+        box-shadow: 0px 4px 20px rgba(0, 255, 255, 0.3);
     }
 
-    /* نص العنوان الفرعي */
     .sub-title {
         text-align: center;
         color: #00ffff;
@@ -43,7 +42,6 @@ st.markdown("""
         padding: 10px;
         border-radius: 10px;
         border: 1px solid rgba(0, 255, 255, 0.2);
-        font-size: 0.9rem;
         margin-bottom: 5px;
     }
 
@@ -55,7 +53,6 @@ st.markdown("""
         margin-bottom: 25px;
     }
 
-    /* بطاقات الأسعار */
     .price-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -67,12 +64,11 @@ st.markdown("""
         border-radius: 15px;
         padding: 15px;
         text-align: center;
-        border-bottom: 3px solid #00ffff; /* الخط الملون أسفل البطاقة */
+        border-bottom: 3px solid #00ffff;
     }
     .label { color: #808d9a; font-size: 0.8rem; }
     .value { color: #ffffff; font-size: 1.3rem; font-weight: bold; margin-top: 5px; }
 
-    /* حاوية نبض السوق */
     .market-container {
         background: #17212b;
         border: 1px solid #00ffff;
@@ -80,50 +76,21 @@ st.markdown("""
         padding: 20px;
         margin-top: 10px;
     }
-    .market-header {
-        color: #00ffff;
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-    
-    .status-row {
-        display: flex;
-        justify-content: space-between;
-        color: #ffffff;
-        margin-bottom: 10px;
-        font-size: 0.9rem;
-    }
-
-    /* زر الواتساب */
-    .stButton>button {
-        background: linear-gradient(90deg, #0088cc, #00ffff);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 15px;
-        width: 100%;
-        font-weight: bold;
-        transition: 0.3s;
-    }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. عرض اللوجو الرئيسي
+# 3. عرض اللوجو الرئيسي (تم تصحيح الرابط)
 st.markdown(f"""
     <div class="logo-container">
         <img src="https://raw.githubusercontent.com/molamilan89-gif/toro-libya/main/1000105722.jpg" class="logo-img">
     </div>
     <div class="sub-title">
-        🐂 تورو ليبيا: وجهتك الاقتصادية الأولى والوحيدة في ليبيا ..
+        أ .. 🐂 تورو ليبيا: وجهتك الاقتصادية الأولى والوحيدة ..
     </div>
     <div class="legend-text">THE LEGEND OF LIBYAN MARKET</div>
     """, unsafe_allow_html=True)
 
-# 4. شبكة الأسعار (USD, GOLD, BTC)
+# 4. شبكة الأسعار
 st.markdown(f"""
     <div class="price-grid">
         <div class="price-box">
@@ -143,45 +110,44 @@ st.markdown(f"""
 
 # 5. قسم نبض السوق والتوصيات
 st.markdown('<div class="market-container">', unsafe_allow_html=True)
-st.markdown('<div class="market-header">🌟 | نبض السوق والتوصيات</div>', unsafe_allow_html=True)
+st.markdown("<h3 style='color:#00ffff; text-align:right;'>🌟 | نبض السوق والتوصيات</h3>", unsafe_allow_html=True)
 
-st.markdown("""
-    <div class="status-row">
-        <span>حالة الاستقرار</span>
-        <span style="color:#00ffff;">75% مستقر</span>
-    </div>
-    """, unsafe_allow_html=True)
+col_a, col_b = st.columns([1, 1])
+with col_a: st.write("حالة الاستقرار")
+with col_b: st.markdown("<p style='color:#00ffff; text-align:left;'>75% مستقر</p>", unsafe_allow_html=True)
 st.progress(75)
 
-# 6. الرسم البياني لمؤشر السعر
+# 6. الرسم البياني (تم تصحيح الخطأ البرمجي هنا)
 df = pd.DataFrame({
-    'date': ['1', '2', '3', '4', '5', '6', '7', '8'],
-    'price': [15, 12, 18, 16, 25, 30, 60, 75] # بيانات تحاكي شكل الرسم في الصورة
+    'x': [1, 2, 3, 4, 5, 6, 7],
+    'y': [10, 15, 13, 20, 25, 40, 65]
 })
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(
-    x=df['date'], 
-    y=df['price'],
-    mode='lines',
+    x=df['x'], 
+    y=df['y'],
+    mode='lines+markers',
     line=dict(color='#00ffff', width=3),
     fill='tozeroy',
     fillcolor='rgba(0, 255, 255, 0.1)'
 ))
 
 fig.update_layout(
-    title=dict(text="USD/LYD Price Trend", font=dict(color="white", size=14)),
+    title={"text": "USD/LYD Price Trend", "font": {"color": "white", "size": 14}},
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
-    margin=dict(l=0, r=0, t=30, b=0),
-    height=200,
-    xaxis=dict(visible=False),
-    yaxis=dict(showgrid=True, gridcolor='#242f3d', font=dict(color="#55606e"))
+    font={"color": "#55606e"},
+    margin=dict(l=0, r=0, t=40, b=0),
+    height=250,
+    xaxis=dict(showgrid=False, visible=False),
+    yaxis=dict(showgrid=True, gridcolor='#242f3d')
 )
 
 st.plotly_chart(fig, use_container_width=True)
 
 # 7. زر التواصل
-st.button("💬 تواصل مع الإدارة عبر واتساب")
+if st.button("💬 تواصل مع الإدارة عبر واتساب"):
+    st.write("جاري التحويل...")
 
 st.markdown('</div>', unsafe_allow_html=True)
