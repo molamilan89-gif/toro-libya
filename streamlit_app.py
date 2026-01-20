@@ -1,91 +1,61 @@
 import streamlit as st
-import base64
-import requests
 
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="Toro Libya", page_icon="🐂", layout="centered")
 
-# 2. وظيفة لجلب الصورة وتحويلها لنص (Base64) لضمان الظهور
-def get_image_base64(url):
-    try:
-        res = requests.get(url)
-        return base64.b64encode(res.content).decode()
-    except:
-        return None
-
-# رابط الصورة من مستودعك
-img_url = "https://raw.githubusercontent.com/molamilan89-gif/toro-libya/main/1000105722.jpg"
-encoded_img = get_image_base64(img_url)
-
-# 3. تصميم الموقع بالكامل (HTML & CSS)
-html_content = f"""
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+# 2. تنسيق الخلفية والعناصر العامة (CSS)
+st.markdown("""
     <style>
-        body {{ font-family: 'Tajawal', sans-serif; background-color: #0b1120; color: white; text-align: center; margin: 0; padding: 0; }}
-        
-        /* إطار اللوجو المضيء */
-        .logo-container {{
-            margin: 40px auto 20px;
-            width: 180px;
-            height: 180px;
-            border-radius: 30px;
-            border: 2px solid #22d3ee;
-            box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #1e293b;
-        }}
-        .logo-container img {{ width: 100%; height: 100%; object-fit: cover; }}
-
-        .brand-name {{ font-size: 38px; font-weight: 900; letter-spacing: 4px; margin: 5px 0; }}
-        .brand-sub {{ color: #64748b; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; }}
-        
-        .price-grid {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 0 15px; }}
-        .card {{ background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 15px; }}
-        .card-val {{ font-size: 22px; font-weight: bold; color: #22d3ee; display: block; }}
-        .card-label {{ font-size: 12px; color: #94a3b8; }}
-
-        .news-bar {{ background: rgba(34, 211, 238, 0.1); border: 1px solid #22d3ee; padding: 8px; border-radius: 10px; margin: 20px 15px; font-size: 13px; }}
-        
-        .pulse-box {{ background: #111827; border: 1px solid #22d3ee; border-radius: 20px; padding: 20px; margin: 20px 15px; text-align: right; }}
+    .main { background-color: #0b1120; }
+    div[data-testid="stVerticalBlock"] > div:has(div.stImage) {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    /* تحسين شكل الصورة لتظهر كلوجو احترافي */
+    img {
+        border-radius: 25px;
+        border: 2px solid #22d3ee;
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+    }
     </style>
-</head>
-<body>
+    """, unsafe_allow_html=True)
 
-    <div class="news-bar">
-        <marquee>📢 تورو ليبيا: وجهتك الاقتصادية الأولى والوحيدة في ليبيا .. 🐂 تحديثات فورية من قلب سوق المشير ..</marquee>
+# 3. عرض شريط الإعلانات في الأعلى
+st.info("📢 تورو ليبيا: وجهتك الاقتصادية الأولى والوحيدة في ليبيا .. 🐂 تحديثات فورية")
+
+# 4. عرض اللوجو باستخدام أداة Streamlit الرسمية (لضمان الظهور 100%)
+logo_url = "https://raw.githubusercontent.com/molamilan89-gif/toro-libya/main/1000105722.jpg"
+st.image(logo_url, width=180)
+
+# 5. العنوان والوصف
+st.markdown("""
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h1 style="color: white; font-size: 40px; font-weight: 900; letter-spacing: 3px; margin: 0;">TORO <span style="color: #22d3ee;">LY</span></h1>
+        <p style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">THE LEGEND OF LIBYAN MARKET</p>
     </div>
+    """, unsafe_allow_html=True)
 
-    <div class="logo-container">
-        {f'<img src="data:image/jpeg;base64,{encoded_img}">' if encoded_img else '<p>Loading...</p>'}
-    </div>
+# 6. كروت الأسعار (باستخدام أعمدة Streamlit لتوافق أفضل)
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown('<div style="background: rgba(30,41,59,0.7); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05);"><span style="color: #94a3b8; font-size: 12px;">USD</span><br><span style="color: #22d3ee; font-size: 20px; font-weight: bold;">8.65</span></div>', unsafe_allow_html=True)
+with col2:
+    st.markdown('<div style="background: rgba(30,41,59,0.7); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05);"><span style="color: #94a3b8; font-size: 12px;">GOLD 18</span><br><span style="color: #eab308; font-size: 20px; font-weight: bold;">415.5</span></div>', unsafe_allow_html=True)
+with col3:
+    st.markdown('<div style="background: rgba(30,41,59,0.7); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.05);"><span style="color: #94a3b8; font-size: 12px;">BTC</span><br><span style="color: #22c55e; font-size: 20px; font-weight: bold;">96.4K</span></div>', unsafe_allow_html=True)
 
-    <div class="brand-name">TORO <span style="color: #22d3ee;">LY</span></div>
-    <div class="brand-sub">THE LEGEND OF LIBYAN MARKET</div>
-
-    <div class="price-grid">
-        <div class="card"><span class="card-label">USD</span><span class="card-val">8.65</span></div>
-        <div class="card"><span class="card-label">GOLD 18</span><span class="card-val">415.5</span></div>
-        <div class="card"><span class="card-label">BTC</span><span class="card-val">96.4K</span></div>
-    </div>
-
-    <div class="pulse-box">
-        <h3 style="color: #22d3ee; margin-top: 0;">🌟 نبض السوق والتوصيات</h3>
-        <p style="font-size: 14px; margin-bottom: 5px;">حالة الاستقرار: <span style="color: #22d3ee;">75% مستقر</span></p>
+# 7. قسم نبض السوق والتوصيات
+st.markdown("""
+    <div style="background: #111827; border: 1px solid #22d3ee; border-radius: 20px; padding: 20px; margin-top: 30px; text-align: right; direction: rtl;">
+        <h3 style="color: #22d3ee; margin-top: 0; font-size: 18px;">🌟 نبض السوق والتوصيات</h3>
+        <p style="color: white; font-size: 14px; margin-bottom: 10px;">حالة الاستقرار: <span style="color: #22d3ee;">75% مستقر</span></p>
         <div style="width: 100%; height: 6px; background: #334155; border-radius: 10px;">
             <div style="width: 75%; height: 100%; background: #22d3ee; border-radius: 10px;"></div>
         </div>
         <p style="font-size: 11px; color: #94a3b8; margin-top: 15px;">⚠️ جاري تحليل أحدث رسائل الواتساب الواردة من الغرفة الموثوقة...</p>
     </div>
+    """, unsafe_allow_html=True)
 
-</body>
-</html>
-"""
-
-st.components.v1.html(html_content, height=1000, scrolling=True)
+st.markdown('<p style="text-align: center; color: #475569; font-size: 10px; margin-top: 50px;">TORO LIBYA © 2026</p>', unsafe_allow_html=True)
