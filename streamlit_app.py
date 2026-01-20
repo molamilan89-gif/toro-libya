@@ -1,9 +1,13 @@
 import streamlit as st
 
-# إعدادات الصفحة الاحترافية - TORO LIBYA
-st.set_page_config(page_title="Toro Libya - منصة وول ستريت ليبيا", page_icon="🐂", layout="centered")
+# 1. إعدادات الصفحة الاحترافية - TORO LIBYA
+st.set_page_config(
+    page_title="Toro Libya - منصة وول ستريت ليبيا", 
+    page_icon="🐂", 
+    layout="centered"
+)
 
-# الكود الكامل مع دمج نظام التحديث التلقائي من مصدر خارجي (واتساب)
+# 2. الكود الكامل مع دمج اللوجو ونظام التحديث التلقائي
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -15,6 +19,24 @@ full_code = """
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Tajawal', sans-serif; background: #0b1120; color: white; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* تصميم اللوجو في الأعلى */
+        .header-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 40px;
+            margin-bottom: 20px;
+        }
+        .main-logo {
+            width: 180px;
+            border-radius: 20px;
+            border: 2px solid #22d3ee;
+            box-shadow: 0px 0px 25px rgba(34, 211, 238, 0.4);
+            margin-bottom: 15px;
+        }
+
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; transition: 0.3s ease; }
         .glass:hover { transform: translateY(-3px); border-color: rgba(34, 211, 238, 0.4); }
         .section-title { border-right: 4px solid #22d3ee; padding-right: 12px; margin-bottom: 15px; font-weight: 900; color: #22d3ee; }
@@ -28,13 +50,12 @@ full_code = """
         .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
 
-        .main-container { padding: 80px 20px 50px 20px; display: flex; flex-direction: column; items: center; }
+        .main-container { padding: 20px; display: flex; flex-direction: column; items: center; }
         .market-pulse-bar { height: 6px; width: 100%; background: #1e293b; border-radius: 10px; margin: 10px 0; overflow: hidden; }
         .pulse-fill { height: 100%; width: 75%; background: linear-gradient(90deg, #22d3ee, #4ade80); }
         .calc-box { background: #111827; border: 1px solid #374151; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; margin-bottom: 10px; }
         .calc-box input { background: transparent !important; border: none !important; padding: 12px 5px !important; width: 100% !important; color: white !important; direction: ltr !important; text-align: center !important; outline: none !important; font-weight: bold; }
         
-        /* تأثير عند تحديث السعر تلقائياً */
         .price-up { animation: price-green 2s ease; }
         @keyframes price-green { 0% { color: #4ade80; } 100% { color: inherit; } }
     </style>
@@ -46,13 +67,14 @@ full_code = """
         </div>
     </div>
 
+    <div class="header-logo-container">
+        <img src="https://raw.githubusercontent.com/molamilan89-gif/toro-libya/main/1000105722.jpg" class="main-logo" alt="Toro Logo">
+        <h1 class="text-4xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
+        <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
+    </div>
+
     <div class="main-container">
         <div class="live-indicator"><span class="dot"></span> مزامنة فورية مع سوق المشير</div>
-
-        <div class="text-center mb-6">
-            <h1 class="text-5xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
-            <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
-        </div>
 
         <div class="grid grid-cols-3 gap-3 w-full max-w-md mb-8">
             <div class="quick-card bg-slate-800/50 p-3 rounded-xl border border-white/5 text-center">
@@ -99,22 +121,7 @@ full_code = """
             <div class="glass p-5">
                 <h2 class="section-title">✨ الذهب والمعادن</h2>
                 <div class="price-item"><span>💍 ذهب جديد (عيار 21)</span><span id="val-g21" class="font-bold text-yellow-500">485.0</span></div>
-                <div class="price-item"><span>🛠️ ذهب مستعمل (عيار 18)</span><span class="font-bold text-yellow-600">425.0</span></div>
                 <div class="price-item"><span>✨ ذهب كسر (عيار 18)</span><span id="val-g18" class="font-bold text-yellow-400">415.5</span></div>
-                <div class="price-item"><span>🥈 فضة (جرام)</span><span class="font-bold text-gray-300">5.40</span></div>
-                <div class="price-item"><span>🥉 نحاس (كيلو)</span><span class="font-bold text-orange-500">42.0</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">🪙 العملات الرقمية</h2>
-                <div class="price-item"><span>₿ Bitcoin (BTC)</span><span class="text-green-400 font-bold">$96,430</span></div>
-                <div class="price-item"><span>Ξ Ethereum (ETH)</span><span class="text-blue-400 font-bold">$3,345</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">🏗️ مواد البناء والسلع</h2>
-                <div class="price-item"><span>🧱 إسمنت (قنطار)</span><span class="font-bold">45.00</span></div>
-                <div class="price-item"><span>🌻 زيت (لتر)</span><span class="font-bold">7.50</span></div>
             </div>
 
             <div class="glass p-6 border-2 border-cyan-500/40">
@@ -130,18 +137,11 @@ full_code = """
     </div>
 
     <script>
-        // دالة "الاستماع" لرسائل الواتساب (Automatic Listener)
-        // هذه الدالة ستقوم بجلب البيانات من قاعدة البيانات المربوطة بالبوت
         async function fetchWhatsAppUpdates() {
             try {
-                // هنا نضع رابط الـ API الخاص ببوت الواتساب مستقبلاً
-                // حالياً نقوم بمحاكاة وصول سعر جديد من الغرفة الموثوقة
                 const fakeNewUsd = (8.60 + Math.random() * 0.1).toFixed(2);
-                
-                // تحديث القيم في الواجهة فوراً
                 const usdEl = document.getElementById('val-usd');
                 const cardUsdEl = document.getElementById('card-usd');
-                
                 if (usdEl.innerText !== fakeNewUsd) {
                     usdEl.innerText = fakeNewUsd;
                     cardUsdEl.innerText = fakeNewUsd;
@@ -151,10 +151,8 @@ full_code = """
             } catch (e) { console.log("Waiting for data..."); }
         }
 
-        // تشغيل نظام الاستماع كل 5 ثوانٍ لضمان التحديث التلقائي
         setInterval(fetchWhatsAppUpdates, 5000);
 
-        // تشارت الكريبتو
         const ctx = document.getElementById('cryptoStyleChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
@@ -173,7 +171,6 @@ full_code = """
             options: { responsive: true, plugins: { legend: { display: false } } }
         });
 
-        // الحاسبة
         const rateUsd = 8.65, rateEur = 9.12;
         function runCalc(id) {
             const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
@@ -187,4 +184,4 @@ full_code = """
 </html>
 """
 
-st.components.v1.html(full_code, height=3500, scrolling=True)
+st.components.v1.html(full_code, height=2200, scrolling=True)
