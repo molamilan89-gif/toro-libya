@@ -10,7 +10,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. التنسيق الجمالي (CSS)
+# 2. التنسيق الجمالي (CSS) لضمان مطابقة التصميم المطلوب
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
@@ -26,48 +26,50 @@ st.markdown("""
         display: flex;
         justify-content: center;
         margin-bottom: 25px;
+        min-height: 200px;
     }
     .logo-img {
-        width: 180px;
+        width: 250px;
         border-radius: 20px;
         border: 2px solid #00ffff;
-        box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.4);
+        box-shadow: 0px 0px 25px rgba(0, 255, 255, 0.5);
     }
 
     .scrolling-ticker {
         background: linear-gradient(90deg, #004d4d, #008080);
         color: white;
-        padding: 12px;
-        border-radius: 10px;
+        padding: 15px;
+        border-radius: 12px;
         margin-bottom: 20px;
         border: 1px solid #00ffff;
         text-align: center;
         font-weight: bold;
+        font-size: 1.1rem;
     }
 
     .price-card {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(0, 255, 255, 0.2);
         border-radius: 15px;
-        padding: 20px;
+        padding: 25px;
         text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
-    .price-label { color: #888; font-size: 0.9rem; margin-bottom: 5px; }
-    .price-value { color: #ffffff; font-size: 1.6rem; font-weight: bold; }
+    .price-label { color: #888; font-size: 1rem; margin-bottom: 8px; }
+    .price-value { color: #ffffff; font-size: 1.8rem; font-weight: bold; }
 
     .market-pulse-card {
         background: rgba(0, 20, 30, 0.7);
         border: 2px solid #00ffff;
         border-radius: 20px;
         padding: 25px;
-        margin-top: 20px;
+        margin-top: 25px;
     }
     </style>
     """, unsafe_allow_html=True)
 
 # 3. عرض اللوجو الجديد (رأس الثور)
-# تأكد أن ملف الصورة 1000105722.jpg موجود في مستودع GitHub الخاص بك
+# ملاحظة: تم تعديل الرابط ليقرأ من حسابك molamilan89-gif مباشرة
 st.markdown(f"""
     <div class="logo-container">
         <img src="https://raw.githubusercontent.com/molamilan89-gif/toro-libya/main/1000105722.jpg" class="logo-img">
@@ -75,12 +77,12 @@ st.markdown(f"""
     <div class="scrolling-ticker">
         🐂 تورو ليبيا: وجهتك الاقتصادية الأولى والوحيدة في ليبيا ..
     </div>
-    <p style="text-align: center; color: #555; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px;">
+    <p style="text-align: center; color: #555; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 35px;">
         THE LEGEND OF LIBYAN MARKET
     </p>
     """, unsafe_allow_html=True)
 
-# 4. عرض أسعار العملات
+# 4. عرض أسعار العملات الحالية
 col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown('<div class="price-card"><div class="price-label">USD</div><div class="price-value">8.61</div></div>', unsafe_allow_html=True)
@@ -89,7 +91,7 @@ with col2:
 with col3:
     st.markdown('<div class="price-card"><div class="price-label">BTC</div><div class="price-value">96.4K</div></div>', unsafe_allow_html=True)
 
-# 5. قسم نبض السوق
+# 5. قسم نبض السوق والتوصيات
 st.markdown('<div class="market-pulse-card">', unsafe_allow_html=True)
 st.markdown("<h3 style='color:#00ffff; text-align:right;'>🌟 | نبض السوق والتوصيات</h3>", unsafe_allow_html=True)
 
@@ -100,18 +102,18 @@ st.progress(75)
 
 st.warning("⚠️ جاري تحليل أحدث رسائل الواتساب الواردة من الغرفة الموثوقة...")
 
-# 6. الرسم البياني التفاعلي
+# 6. الرسم البياني التفاعلي (Plotly)
 df_chart = pd.DataFrame({
-    'التاريخ': ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'],
-    'السعر': [8.45, 8.52, 8.48, 8.58, 8.61]
+    'اليوم': ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'],
+    'السعر': [8.40, 8.55, 8.48, 8.60, 8.61]
 })
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(
-    x=df_chart['التاريخ'], 
+    x=df_chart['اليوم'], 
     y=df_chart['السعر'],
     mode='lines+markers',
-    line=dict(color='#00ffff', width=3),
+    line=dict(color='#00ffff', width=4),
     fill='tozeroy',
     fillcolor='rgba(0, 255, 255, 0.1)'
 ))
@@ -121,7 +123,7 @@ fig.update_layout(
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
     font=dict(color="white"),
-    margin=dict(l=0, r=0, t=40, b=0),
+    margin=dict(l=10, r=10, t=50, b=10),
     height=300,
     xaxis=dict(showgrid=False),
     yaxis=dict(showgrid=False)
