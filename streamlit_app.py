@@ -7,7 +7,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. الكود الكامل مع دمج اللوجو ونظام التحديث التلقائي
+# 2. الكود البرمجي المتكامل (HTML/CSS/JS)
 full_code = """
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -26,15 +26,15 @@ full_code = """
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-top: 40px;
+            padding-top: 60px;
             margin-bottom: 20px;
         }
         .main-logo {
-            width: 180px;
+            width: 200px;
             border-radius: 20px;
             border: 2px solid #22d3ee;
-            box-shadow: 0px 0px 25px rgba(34, 211, 238, 0.4);
-            margin-bottom: 15px;
+            box-shadow: 0px 0px 30px rgba(34, 211, 238, 0.4);
+            margin-bottom: 20px;
         }
 
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 20px; transition: 0.3s ease; }
@@ -46,23 +46,20 @@ full_code = """
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; font-size: 13px; font-weight: bold; color: #22d3ee; }
         
-        .live-indicator { display: inline-flex; align-items: center; gap: 5px; color: #4ade80; font-size: 10px; font-weight: bold; margin-bottom: 10px; }
+        .live-indicator { display: inline-flex; align-items: center; gap: 5px; color: #4ade80; font-size: 11px; font-weight: bold; margin-bottom: 10px; }
         .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
 
-        .main-container { padding: 20px; display: flex; flex-direction: column; items: center; }
+        .main-container { padding: 20px; display: flex; flex-direction: column; items: center; width: 100%; max-width: 500px; margin: auto; }
         .market-pulse-bar { height: 6px; width: 100%; background: #1e293b; border-radius: 10px; margin: 10px 0; overflow: hidden; }
         .pulse-fill { height: 100%; width: 75%; background: linear-gradient(90deg, #22d3ee, #4ade80); }
         .calc-box { background: #111827; border: 1px solid #374151; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; margin-bottom: 10px; }
         .calc-box input { background: transparent !important; border: none !important; padding: 12px 5px !important; width: 100% !important; color: white !important; direction: ltr !important; text-align: center !important; outline: none !important; font-weight: bold; }
-        
-        .price-up { animation: price-green 2s ease; }
-        @keyframes price-green { 0% { color: #4ade80; } 100% { color: inherit; } }
     </style>
 </head>
 <body>
     <div class="marquee-wrapper">
-        <div class="animate-marquee" id="news-ticker">
+        <div class="animate-marquee">
             📢 عاجل: Toro Libya متصل الآن بغرف الواتساب الموثوقة لتحديث الأسعار لحظياً .. 🐂 تورو ليبيا: وجهتك الاقتصادية الأولى والوحيدة ..
         </div>
     </div>
@@ -70,58 +67,49 @@ full_code = """
     <div class="header-logo-container">
         <img src="https://raw.githubusercontent.com/molamilan89-gif/toro-libya/main/1000105722.jpg" class="main-logo" alt="Toro Logo">
         <h1 class="text-4xl font-black tracking-widest uppercase">Toro <span class="text-cyan-400">Ly</span></h1>
-        <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">المؤشر الاقتصادي الليبي المتكامل</p>
+        <p class="text-gray-500 text-[10px] mt-1 uppercase tracking-widest text-center">THE LEGEND OF LIBYAN MARKET</p>
     </div>
 
     <div class="main-container">
         <div class="live-indicator"><span class="dot"></span> مزامنة فورية مع سوق المشير</div>
 
-        <div class="grid grid-cols-3 gap-3 w-full max-w-md mb-8">
-            <div class="quick-card bg-slate-800/50 p-3 rounded-xl border border-white/5 text-center">
+        <div class="grid grid-cols-3 gap-3 w-full mb-8">
+            <div class="bg-slate-800/50 p-3 rounded-xl border border-white/5 text-center">
                 <p class="text-[10px] text-gray-400 uppercase">USD</p>
-                <p id="card-usd" class="text-sm font-bold">8.65</p>
+                <p id="card-usd" class="text-sm font-bold text-cyan-400">8.65</p>
             </div>
-            <div class="quick-card bg-slate-800/50 p-3 rounded-xl border border-white/5 text-center">
+            <div class="bg-slate-800/50 p-3 rounded-xl border border-white/5 text-center">
                 <p class="text-[10px] text-gray-400 uppercase">GOLD 18</p>
-                <p id="card-gold" class="text-sm font-bold">415.5</p>
+                <p id="card-gold" class="text-sm font-bold text-yellow-500">415.5</p>
             </div>
-            <div class="quick-card bg-slate-800/50 p-3 rounded-xl border border-white/5 text-center">
+            <div class="bg-slate-800/50 p-3 rounded-xl border border-white/5 text-center">
                 <p class="text-[10px] text-gray-400 uppercase">BTC</p>
-                <p id="card-btc" class="text-sm font-bold">96.4K</p>
+                <p id="card-btc" class="text-sm font-bold text-green-400">96.4K</p>
             </div>
         </div>
 
-        <div class="w-full max-w-md">
+        <div class="w-full">
             <div class="glass p-5 border-l-4 border-cyan-500">
                 <h2 class="section-title">🌟 نبض السوق والتوصيات</h2>
                 <div class="flex justify-between items-center text-xs mb-1">
                     <span>حالة الاستقرار</span>
-                    <span class="text-cyan-400" id="pulse-text">75% مستقر</span>
+                    <span class="text-cyan-400">75% مستقر</span>
                 </div>
-                <div class="market-pulse-bar"><div class="pulse-fill" id="pulse-width"></div></div>
-                <p class="text-[11px] text-gray-400 mt-2 italic" id="market-tip">⚠️ جاري تحليل أحدث رسائل الواتساب الواردة من الغرفة الموثوقة...</p>
-                <a href="https://wa.me/yournumber" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3 border border-green-600/30">💬 تواصل مع الإدارة</a>
+                <div class="market-pulse-bar"><div class="pulse-fill"></div></div>
+                <p class="text-[11px] text-gray-400 mt-2 italic">⚠️ جاري تحليل أحدث رسائل الواتساب الواردة من الغرفة الموثوقة...</p>
+                <a href="https://wa.me/218XXXXXXXXX" class="block w-full text-center bg-green-600/20 text-green-400 text-xs py-2 rounded-lg mt-3 border border-green-600/30">💬 تواصل مع الإدارة</a>
             </div>
 
-            <div class="glass p-5 mb-8 mt-6">
+            <div class="glass p-5">
                 <h2 class="section-title">📊 تحليل السوق المباشر</h2>
                 <canvas id="cryptoStyleChart" width="400" height="220"></canvas>
             </div>
 
             <div class="glass p-5">
                 <h2 class="section-title">💵 العملات العالمية</h2>
-                <div class="price-item"><span>🇺🇸 دولار موازي</span><span id="val-usd" class="font-bold text-cyan-400">8.65</span></div>
-                <div class="price-item"><span>🇪🇺 يورو موازي</span><span id="val-eur" class="font-bold">9.12</span></div>
-                <div class="price-item"><span>🇬🇧 باوند إسترليني</span><span id="val-gbp" class="font-bold">10.85</span></div>
-                <div class="price-item"><span>🇹🇳 دينار تونسي</span><span id="val-tnd" class="font-bold">2.65</span></div>
-                <div class="price-item"><span>🇹🇷 ليرة تركية</span><span class="font-bold text-red-400">0.26</span></div>
-                <div class="price-item"><span>🇪🇬 جنيه مصري</span><span id="val-egp" class="font-bold text-green-400">0.17</span></div>
-            </div>
-
-            <div class="glass p-5">
-                <h2 class="section-title">✨ الذهب والمعادن</h2>
-                <div class="price-item"><span>💍 ذهب جديد (عيار 21)</span><span id="val-g21" class="font-bold text-yellow-500">485.0</span></div>
-                <div class="price-item"><span>✨ ذهب كسر (عيار 18)</span><span id="val-g18" class="font-bold text-yellow-400">415.5</span></div>
+                <div class="price-item"><span>🇺🇸 دولار موازي</span><span class="font-bold text-cyan-400">8.65</span></div>
+                <div class="price-item"><span>🇪🇺 يورو موازي</span><span class="font-bold">9.12</span></div>
+                <div class="price-item"><span>✨ ذهب كسر (عيار 18)</span><span class="font-bold text-yellow-400">415.5</span></div>
             </div>
 
             <div class="glass p-6 border-2 border-cyan-500/40">
@@ -133,44 +121,29 @@ full_code = """
                 </div>
             </div>
         </div>
-        <p class="text-gray-600 text-[10px] mt-10 text-center uppercase tracking-widest">Toro Ly Auto-Sync © 2026</p>
+        <p class="text-gray-600 text-[10px] mt-10 text-center">Toro Ly Auto-Sync © 2026</p>
     </div>
 
     <script>
-        async function fetchWhatsAppUpdates() {
-            try {
-                const fakeNewUsd = (8.60 + Math.random() * 0.1).toFixed(2);
-                const usdEl = document.getElementById('val-usd');
-                const cardUsdEl = document.getElementById('card-usd');
-                if (usdEl.innerText !== fakeNewUsd) {
-                    usdEl.innerText = fakeNewUsd;
-                    cardUsdEl.innerText = fakeNewUsd;
-                    usdEl.classList.add('price-up');
-                    setTimeout(() => usdEl.classList.remove('price-up'), 2000);
-                }
-            } catch (e) { console.log("Waiting for data..."); }
-        }
-
-        setInterval(fetchWhatsAppUpdates, 5000);
-
+        // تشغيل التشارت
         const ctx = document.getElementById('cryptoStyleChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+                labels: ['10:00', '12:00', '14:00', '16:00', '18:00', '20:00'],
                 datasets: [{
-                    label: 'السعر المباشر',
-                    data: [8.62, 8.65, 8.63, 8.67, 8.65, 8.68, 8.65],
-                    borderColor: '#4ade80',
-                    borderWidth: 2,
-                    fill: false,
-                    tension: 0.1,
-                    pointRadius: 2
+                    label: 'USD/LYD',
+                    data: [8.60, 8.65, 8.63, 8.67, 8.65, 8.68],
+                    borderColor: '#22d3ee',
+                    backgroundColor: 'rgba(34, 211, 238, 0.1)',
+                    fill: true,
+                    tension: 0.4
                 }]
             },
             options: { responsive: true, plugins: { legend: { display: false } } }
         });
 
+        // نظام الحاسبة
         const rateUsd = 8.65, rateEur = 9.12;
         function runCalc(id) {
             const l = document.getElementById('lyd'), u = document.getElementById('usd'), e = document.getElementById('eur');
@@ -184,4 +157,4 @@ full_code = """
 </html>
 """
 
-st.components.v1.html(full_code, height=2200, scrolling=True)
+st.components.v1.html(full_code, height=1800, scrolling=True)
